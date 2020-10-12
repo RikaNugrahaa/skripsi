@@ -71,4 +71,4 @@
   <!-- /.row -->
 </section>
 
-<p>emak</p>
+<p>emak cupu</p>
