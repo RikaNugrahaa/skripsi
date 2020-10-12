@@ -70,5 +70,3 @@
   </div>
   <!-- /.row -->
 </section>
-
-<p>emak cupu</p>
