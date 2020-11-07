@@ -118,7 +118,7 @@
           </li>
           <li class="treeview <?= $this->uri->segment(1) == 'clustering' || $this->uri->segment(1) == 'campaign' ? 'active' : '' ?>">
             <a href="#">
-              <i class="fa fa-archive"></i><span> CRM</span>
+              <i class="fa fa-list-alt"></i><span> CRM</span>
               <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
             </a>
             <ul class="treeview-menu">
@@ -153,6 +153,8 @@
     </aside>
 
     <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="<?= base_url() ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url() ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
     <div class="content-wrapper">
       <?php echo $contents ?>
@@ -169,8 +171,7 @@
   <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
   <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
 
-  <script src="<?= base_url() ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
   <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
   <script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 

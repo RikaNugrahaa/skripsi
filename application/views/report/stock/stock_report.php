@@ -32,7 +32,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Barang</th>
+                        <th>Nama Barang</th>
                         <th style="text-align:center">Jumlah Stok</th>
 
                         <th style="text-align:center">Harga Satuan</th>

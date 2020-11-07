@@ -48,7 +48,7 @@ class Report extends CI_Controller {
 		if ($nilaifilter == 1) {
 			
 			$data['title'] = "Laporan Transaksi Penjualan";
-			$data['subtitle'] = "Dari tanggal : ".$tanggalawal.' Sampai tanggal : '.$tanggalakhir;
+			$data['subtitle'] = "Dari tanggal : ".indo_date($tanggalawal).' Sampai tanggal : '.indo_date($tanggalakhir);
 			$data['datafilter'] = $this->Report_m->sale_filter_by_date($tanggalawal,$tanggalakhir);
 			$data['sum'] = $this->Report_m->sum_total_by_date($tanggalawal,$tanggalakhir);
 			
@@ -99,7 +99,7 @@ class Report extends CI_Controller {
 		if ($nilaifilter == 1) {
 			
 			$data['title'] = "Laporan Detail Penjualan";
-			$data['subtitle'] = "Dari tanggal : ".$tanggalawal.' Sampai tanggal : '.$tanggalakhir;
+			$data['subtitle'] = "Dari tanggal : ".indo_date($tanggalawal).' Sampai tanggal : '.indo_date($tanggalakhir);
 			$data['datafilter'] = $this->Report_m->detail_filter_by_date($tanggalawal,$tanggalakhir);
 			$data['sum'] = $this->Report_m->sum_total_detail_by_date($tanggalawal,$tanggalakhir);
 			

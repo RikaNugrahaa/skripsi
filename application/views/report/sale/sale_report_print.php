@@ -33,8 +33,6 @@
                                 <th>Invoice</th>
                                 <th>Tanggal</th>
                                 <th>Pelanggan</th>
-                                <!-- <th>Keterangan</th> -->
-                                <th style="text-align:center">Diskon </th>
                                 <th style="text-align:center">Total Pembayaran</th>
                             </tr>
                         </thead>
@@ -43,16 +41,15 @@
 
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $row->invoice; ?></td>
-                            <td><?php echo $row->date; ?></td>
+                            <td><?php echo indo_date ($row->date); ?></td>
                             <td><?php echo $row->customer_id == null ? "Umum" : $row->customer_name ?></td>
-                            <td style="text-align:center"><?php echo $row->discount; ?>%</td>
 
                             <td style="text-align:center"><?php echo indo_currency($row->final_price); ?></td>
 
                             </tr>
                         <?php endforeach ?>
                         <tr>
-                            <td style="text-align:center" colspan="5"><strong>TOTAL</strong></td>
+                            <td style="text-align:center" colspan="4"><strong>TOTAL</strong></td>
 
                             <td style="text-align:center"><strong><?php echo indo_currency($sum); ?></strong></td>
                         </tr>

@@ -27,8 +27,9 @@ Class Fungsi {
         $this->ci->load->model('customer_m');
         return $this->ci->customer_m->get()->num_rows();
     }
-    public function count_user() {
-        $this->ci->load->model('user_m');
-        return $this->ci->user_m->get()->num_rows();
+    public function count_therapist() {
+        $this->ci->load->model('therapist_m');
+        return $this->ci->therapist_m->get()->num_rows();
     }
+    
 }

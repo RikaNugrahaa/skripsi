@@ -1,10 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Report_m extends CI_Model {
-    public function __construct(){
-
-        parent::__construct();
-    }
+   
 
     public function get_sale_by_year(){
         $this->db->select('year(date) as tahun');

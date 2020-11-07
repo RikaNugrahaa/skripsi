@@ -19,7 +19,7 @@
             <center>
                 <b>
                     <h2>Laporan Stok Barang</h2>
-                    <h3> Tanggal : <?= date('d-M-Y') ?> </h3>
+                    <h3> Tanggal : <?= date('d/m/yy') ?> </h3>
                 </b>
             </center>
         </section>
@@ -30,7 +30,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Barang</th>
+                                <th>Nama Barang</th>
                                 <th>Jumlah Stok</th>
                                 <!-- <th>Barang Masuk</th> -->
                                 <th style="text-align:center">Harga Satuan</th>

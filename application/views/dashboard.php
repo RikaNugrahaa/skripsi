@@ -13,11 +13,11 @@
   <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-shopping-cart"></i></span>
+        <span class="info-box-icon bg-aqua"><i class="fa fa-archive"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Product</span>
-          <span class="info-box-number"><?=$this->fungsi->count_product()?></span>
+          <span class="info-box-text">Produk</span>
+          <span class="info-box-number"><?= $this->fungsi->count_product() ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -30,7 +30,7 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Supplier</span>
-          <span class="info-box-number"><?=$this->fungsi->count_supplier()?></span>
+          <span class="info-box-number"><?= $this->fungsi->count_supplier() ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -46,8 +46,8 @@
         <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text ">Customer</span>
-          <span class="info-box-number"><?=$this->fungsi->count_customer()?></span>
+          <span class="info-box-text ">Pelanggan</span>
+          <span class="info-box-number"><?= $this->fungsi->count_customer() ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -56,17 +56,18 @@
     <!-- /.col -->
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-yellow"><i class="fa fa-user-plus"></i></span>
+        <span class="info-box-icon bg-yellow"><i class="fa fa-user-md"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">User</span>
-          <span class="info-box-number"><?=$this->fungsi->count_user()?></span>
+          <span class="info-box-text">Terapis</span>
+          <span class="info-box-number"><?= $this->fungsi->count_therapist() ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
       <!-- /.info-box -->
     </div>
     <!-- /.col -->
+    
   </div>
   <!-- /.row -->
 </section>
