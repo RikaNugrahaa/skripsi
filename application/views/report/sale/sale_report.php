@@ -217,7 +217,7 @@
         $("#tanggalfilter").hide();
         $("#tahunfilter").hide();
         $("#bulanfilter").hide();
-        $("#cardbayar").hide();
+       
 
     });
 
@@ -251,7 +251,7 @@
         $("#tanggalfilter").hide();
         $("#tahunfilter").hide();
         $("#bulanfilter").hide();
-        $("#cardbayar").hide();
+        
 
         $("#periode").val('');
         $("#tanggalawal").val('');
@@ -260,7 +260,7 @@
         $("#bulanawal").val('');
         $("#bulanakhir").val('');
         $("#tahun2").val('');
-        $("#targetbayar").empty();
+        
 
     }
 

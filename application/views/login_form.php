@@ -20,12 +20,13 @@
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
+    <div class="login-box-body">
         <div class="login-logo">
         <?php $this->view('messages') ?>
             <a><b>POS</b>-CEO Refleksi</a>
         </div>
-        <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+        
+            
             <form action="<?=site_url('auth/process')?>" method="post">
         <div class="form-group has-feedback">
             <input type="text" name="username" class="form-control" placeholder="Username" required autofocus> 
@@ -38,7 +39,7 @@
             <div class="row">
             <div class="col-xs-8"></div>
         <div class="col-xs-4">
-          <button type="submit" name="login" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" name="login" class="btn btn-primary btn-block btn-flat">Login</button>
         </div>    
       </div>
     </form>

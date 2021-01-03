@@ -12,7 +12,7 @@
 
     <div class="box">
         <div class="box-header">
-            <h2 class="box-title"><b> <?= ucfirst($page) ?> Terapis</b></h2>
+            <h2 class="box-title"><b> <?= ucfirst($show) ?> Terapis</b></h2>
             <div class="pull-right">
                 <a href="<?= site_url('therapist') ?>" class="btn btn-warning btn-flat">
                     <i class="fa fa-undo"></i> Kembali
@@ -44,7 +44,7 @@
                             <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
                                 <i class="fa fa-paper-plane"></i> Simpan
                             </button>
-                            <button type="reset" class="btn btn-flat">Reset</button>
+                            <button type="reset" class="btn btn-secondary btn-danger"><i class="fa fa-ban"></i> Reset</button>
                         </div>
                     </form>
                 </div>

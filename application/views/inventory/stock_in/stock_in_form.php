@@ -61,7 +61,7 @@
                             <button type="submit" name="stock_in_add" class="btn btn-success btn-flat">
                                 <i class="fa fa-paper-plane"></i> Simpan
                             </button>
-                            <button type="reset" class="btn btn-flat">Reset</button>
+                            <button type="reset" class="btn btn-secondary btn-danger"><i class="fa fa-ban"></i> Reset</button>
                         </div>
                     </form>
                 </div>

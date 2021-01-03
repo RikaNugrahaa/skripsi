@@ -25,6 +25,7 @@ class Therapist extends CI_Controller {
 		$therapist->gender = null;
 		$data = array(
 			'page' => 'add', 
+			'show' => 'tambah',
 			'row'=> $therapist
 		);
 		$this->template->load('template', 'therapist/therapist_form', $data);
@@ -37,6 +38,7 @@ class Therapist extends CI_Controller {
 			$therapist = $query->row();
 			$data = array(
 				'page' => 'edit', 
+				'show' => 'edit',
 				'row'=> $therapist
 			);
 			$this->template->load('template', 'therapist/therapist_form', $data);

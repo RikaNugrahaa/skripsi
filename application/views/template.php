@@ -77,35 +77,46 @@
           <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
             <a href="<?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i><span> Dashboard</span></a>
           </li>
+          <?php if($this->fungsi->user_login()->level == 1) { ?>
           <li <?= $this->uri->segment(1) == 'supplier' ? 'class="active"' : '' ?>>
             <a href="<?= site_url('supplier') ?>"><i class="fa fa-truck"></i><span> Supplier</span></a>
           </li>
+          <?php } ?>
+          <?php if($this->fungsi->user_login()->level == 1) { ?>
           <li <?= $this->uri->segment(1) == 'therapist' ? 'class="active"' : '' ?>>
             <a href="<?= site_url('therapist') ?>"><i class="fa fa-user-md"></i><span> Terapis</span></a>
           </li>
+          <?php } ?>
           <li <?= $this->uri->segment(1) == 'customer' ? 'class="active"' : '' ?>>
             <a href="<?= site_url('customer') ?>"><i class="fa fa-group"></i><span> Pelanggan</span>
             </a>
           </li>
+          <?php if($this->fungsi->user_login()->level == 2) { ?> 
           <li <?= $this->uri->segment(1) == 'sale' ? 'class="active"' : '' ?>>
             <a href="<?= site_url('sale') ?>"><i class="fa fa-money"></i><span> Transaksi Penjualan</span>
             </a>
           </li>
+          <?php } ?>
           <li class="treeview <?= $this->uri->segment(1) == 'item' || $this->uri->segment(1) == 'stock' ? 'active' : '' ?>">
             <a href="#">
               <i class="fa fa-shopping-cart"></i><span> Inventori Barang</span>
               <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
             </a>
             <ul class="treeview-menu">
+            <?php if($this->fungsi->user_login()->level == 1) { ?>
               <li <?= $this->uri->segment(1) == 'item' ? 'class="active"' : '' ?>><a href="<?= site_url('item') ?>"><i class="fa fa-circle-o"></i> Stok Barang</a></li>
               <li <?= $this->uri->segment(1) == 'stock' && $this->uri->segment(2) == 'in' ? 'class="active"' : '' ?>>
                 <a href="<?= site_url('stock/in') ?>"><i class="fa fa-circle-o"></i> Barang Masuk</a>
               </li>
+              <?php } ?>
+              <?php if($this->fungsi->user_login()->level == 2) { ?>
               <li <?= $this->uri->segment(1) == 'stock' && $this->uri->segment(2) == 'out' ? 'class="active"' : '' ?>>
                 <a href="<?= site_url('stock/out') ?>"><i class="fa fa-circle-o"></i> Barang keluar</a>
               </li>
+              <?php } ?>
             </ul>
           </li>
+          <?php if($this->fungsi->user_login()->level == 1) { ?>
           <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'product' ? 'active' : '' ?>">
             <a href="#">
               <i class="fa fa-archive"></i><span> Paket Layanan</span>
@@ -116,6 +127,8 @@
               <li <?= $this->uri->segment(1) == 'product' ? 'class="active"' : '' ?>><a href="<?= site_url('product') ?>"><i class="fa fa-circle-o"></i>Produk Layanan</a></li>
             </ul>
           </li>
+          <?php } ?>
+          <?php if($this->fungsi->user_login()->level == 1) { ?>
           <li class="treeview <?= $this->uri->segment(1) == 'clustering' || $this->uri->segment(1) == 'campaign' ? 'active' : '' ?>">
             <a href="#">
               <i class="fa fa-list-alt"></i><span> CRM</span>
@@ -126,6 +139,8 @@
               <li <?= $this->uri->segment(1) == 'campaign' ? 'class="active"' : '' ?>><a href="<?= site_url('campaign') ?>"><i class="fa fa-circle-o"></i> SMS Campaign </a></li>
             </ul>
           </li>
+          <?php } ?>
+          <?php if($this->fungsi->user_login()->level == 1) { ?>
           <li class="treeview <?= $this->uri->segment(1) == 'report' || $this->uri->segment(1) == 'report' || $this->uri->segment(1) == 'report' ? 'active' : '' ?>">
             <a href="#">
               <i class="fa fa-pie-chart"></i><span> Laporan</span>
@@ -143,6 +158,7 @@
               </li>
             </ul>
           </li>
+          <?php } ?>
           <?php if ($this->fungsi->user_login()->level == 1) { ?>
             <li class="header"> SETTING</li>
             <li><a href="<?= site_url('user') ?>"><i class="fa fa-user"></i> <span> User</span></a></li>

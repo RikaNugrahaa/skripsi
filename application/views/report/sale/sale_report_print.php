@@ -42,7 +42,7 @@
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $row->invoice; ?></td>
                             <td><?php echo indo_date ($row->date); ?></td>
-                            <td><?php echo $row->customer_id == null ? "Umum" : $row->customer_name ?></td>
+                            <td><?= $row->customer_id == null ? "Umum" : $row->customer_name ?></td>
 
                             <td style="text-align:center"><?php echo indo_currency($row->final_price); ?></td>
 

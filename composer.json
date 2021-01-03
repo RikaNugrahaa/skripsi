@@ -12,7 +12,9 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"tecnickcom/tcpdf": "^6.3"
+		"tecnickcom/tcpdf": "^6.3",
+		"nexmo/client": "^2.4",
+		"twilio/sdk": "^6.15"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

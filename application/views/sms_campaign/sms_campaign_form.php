@@ -23,25 +23,27 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
-                        <form action="<?=site_url('campaign/process')?>" method="post">
+                        <form action="<?=site_url('campaign/sendSMS')?>" method="post">
                             <div class="form-group">
                                 <label>Isi Pesan *</label>
-                                <textarea name="description" class=" form-control"></textarea> 
+                                <textarea name="message" value="" class="form-control"  required></textarea> 
                             </div>
                             <div class="form-group">
                                 <label>Penerima *</label>
-                                <select name="receiver" class="form-control" >
+                                <input type="number" name="recipient" value="" class=" form-control"  required>
+                                <!-- <select name="<recipient</B>" class="form-control" >
                                     <option value="">- Pilih -</option>
                                     <option value="1">Cluster 1</option>
                                     <option value="2">Cluster 2</option>
-                                </select>
+                                </select> -->
                             </div>
                            
                             <div class="form-group">
-                                <button type="submit" name="" class="btn btn-success btn-flat">
+                                <button type="submit" name="add" class="btn btn-success btn-flat" >
+                              
                                     <i class="fa fa-paper-plane"></i> Kirim
                                 </button>
-                                <button type="reset" class="btn btn-flat">Reset</button>
+                                <button type="reset" class="btn btn-secondary btn-danger"><i class="fa fa-ban"></i> Reset</button>
                             </div>
                         </form>
                     </div>

@@ -29,7 +29,9 @@
                             <th>Nama</th>
                             <th>Phone</th>
                             <th>Jenis Kelamin</th>
+                            <?php if($this->fungsi->user_login()->level == 1) { ?> 
                             <th>Aksi</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>

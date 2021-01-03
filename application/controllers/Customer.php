@@ -23,7 +23,7 @@ class Customer extends CI_Controller {
             $row[] = $customer->gender;
         
             // add html for action
-            $row[] = '<a href="'.site_url('customer/edit/'.$customer->customer_id).'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+            $row[] ='<a href="'.site_url('customer/edit/'.$customer->customer_id).'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
                    <a href="'.site_url('customer/del/'.$customer->customer_id).'" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>';
             $data[] = $row;
         }
@@ -61,6 +61,7 @@ class Customer extends CI_Controller {
 
 	public function edit($id)
 	{
+		check_admin();
 		$query = $this->customer_m->get($id);
 		if($query->num_rows() > 0) {
 			$customer = $query->row();
@@ -92,6 +93,7 @@ class Customer extends CI_Controller {
 
 	public function del($id)
 	{
+		check_admin();
 		$this->customer_m->del($id);
 		if($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Data berhasil dihapus');
