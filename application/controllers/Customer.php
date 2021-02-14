@@ -54,6 +54,7 @@ class Customer extends CI_Controller {
 		$customer->gender = null;
 		$data = array(
 			'page' => 'add', 
+			'show' => 'tambah',
 			'row'=> $customer
 		);
 		$this->template->load('template', 'customer/customer_form', $data);
@@ -67,6 +68,7 @@ class Customer extends CI_Controller {
 			$customer = $query->row();
 			$data = array(
 				'page' => 'edit', 
+				'show' => 'edit',
 				'row'=> $customer
 			);
 			$this->template->load('template', 'customer/customer_form', $data);

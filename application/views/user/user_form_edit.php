@@ -4,7 +4,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-        <li class="active">User</li>
+        <li class="active">Users</li>
     </ol>
 </section>
 
@@ -49,7 +49,15 @@
                             <textarea name="address" class="form-control"><?= $this->input->post('address') ?? $row->address ?></textarea>
                             <?= form_error('address') ?>
                         </div>
-                       
+                        <div class="form-group <?= form_error('level') ? 'has-error' : null ?>">
+                            <label>Level *</label>
+                            <select name="level" class=" form-control">
+                                <?php $level = $this->input->post('level') ? $this->input->post('level') : $row->level ?>
+                                <option value="1">Admin</option>
+                                <option value="2" <?= $level == 2 ? 'selected' : null ?>>Kasir</option>
+                            </select>
+                            <?= form_error('level') ?>
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success btn-flat">
                                 <i class="fa fa-paper-plane"></i> Simpan

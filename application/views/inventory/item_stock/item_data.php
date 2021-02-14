@@ -5,7 +5,7 @@
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
         <li>Inventori Barang</li>
-        <li class="active">Barang</li>
+        <li class="active">Items</li>
       </ol>
 </section>
     

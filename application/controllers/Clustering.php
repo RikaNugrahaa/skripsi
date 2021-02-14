@@ -49,11 +49,5 @@ class Clustering extends CI_Controller {
 
     }
 
-    // public function frequency()
-    // {
-    // $data['freq'] = $this->Clustering_m->frequency();
-
-    // $this->template->load('template', 'clustering/clustering_data', $data);
-    // }
 
 }

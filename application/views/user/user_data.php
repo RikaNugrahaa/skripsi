@@ -4,7 +4,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-        <li class="active">User</li>
+        <li class="active">Users</li>
     </ol>
 </section>
 
@@ -15,7 +15,7 @@
             <h3 class="box-title"><b>Data User</b></h3>
             <div class="pull-right">
                 <a href="<?= site_url('user/add') ?>" class="btn btn-primary btn-flat">
-                    <i class="fa fa-user-plus"></i> Tambah
+                    <i class="fa fa-plus"></i> Tambah
                 </a>
             </div>
         </div>

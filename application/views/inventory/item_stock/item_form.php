@@ -5,7 +5,7 @@
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
         <li>Inventori Barang</li>
-        <li class="active">Barang</li>
+        <li class="active">Items</li>
       </ol>
 </section>
     
@@ -37,7 +37,7 @@
                                 <button type="submit" name="<?=$page?>" class="btn btn-success btn-flat">
                                     <i class="fa fa-paper-plane"></i> Simpan
                                 </button>
-                                <button type="reset" class="btn btn-secondary btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                                <button type="reset" class="btn btn-flat">Reset</button>
                             </div>
                         </form>
                     </div>

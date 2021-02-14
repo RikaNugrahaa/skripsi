@@ -19,12 +19,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
+
     <div class="login-box">
     <div class="login-box-body">
         <div class="login-logo">
         <?php $this->view('messages') ?>
+        
             <a><b>POS</b>-CEO Refleksi</a>
         </div>
+        
         
             
             <form action="<?=site_url('auth/process')?>" method="post">

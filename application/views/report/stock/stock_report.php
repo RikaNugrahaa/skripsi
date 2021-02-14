@@ -45,8 +45,8 @@
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $data->name ?></td>
 
-                            <td style="text-align:center"><?php echo $data->stock ?></td>
-
+                            <td style="text-align:center"><?=$data->stock ?></td>
+                            
                             <!-- <td  class="text-center"><?= $data->qty ?></td> -->
                             <td style="text-align:center"> <?php echo indo_currency($data->price); ?></td>
                         </tr>

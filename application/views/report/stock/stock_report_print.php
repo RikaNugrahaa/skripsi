@@ -31,7 +31,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Barang</th>
-                                <th>Jumlah Stok</th>
+                                <th style="text-align:center">Jumlah Stok</th>
                                 <!-- <th>Barang Masuk</th> -->
                                 <th style="text-align:center">Harga Satuan</th>
                             </tr>

@@ -54,47 +54,98 @@
             </form>
         </div>
 
-
         <?php if (!empty($rfm)) : ?>
             <div class="row" id="rfm">
                 <div class="col-lg-12">
                     <div class="box box-widget">
                         <div class="box-body table-responsive">
-                            <table id="message1" class="table table-bordered table-striped">
+                            <table id="table1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Pelanggan</th>
-                                        <th style="text-align:center">Frequency Score</th>
+                                        <th style="text-align:center">Id Pelanggan</th>
                                         <th style="text-align:center">Recency Score</th>
+                                        <th style="text-align:center">Frequency Score</th>
                                         <th style="text-align:center">Monetary Score</th>
+                                        <th style="text-align:center">Recency Normalization</th>
+                                        <th style="text-align:center">Frequency Normalization</th>
+                                        <th style="text-align:center">Monetary Normalization</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
+                                    $nilai_r = array();
+                                    $nilai_f = array();
+                                    $nilai_m = array();
+                                    foreach ($rfm as $r) {
+                                        $tglAwal = strtotime($r['trans_date']);
+                                        $tglAkhir = strtotime(date('Y-m-d'));
+                                        $jeda = abs($tglAkhir - $tglAwal);
+                                        $nilai_r[] = $jeda / (60 * 60 * 24);
+                                        $nilai_f[] = $r['total'];
+                                        $nilai_m[] = $r['total_price'];
+                                    }
+                                    $norm_r = array();
+                                    foreach ($nilai_r as $n_r) {
+                                        $norm_r[] = ($n_r - min($nilai_r)) / (max($nilai_r) - min($nilai_r));
+                                    }
+
+                                    $norm_f = array();
+                                    foreach ($nilai_f as $n_f) {
+                                        $norm_f[] = ($n_f - min($nilai_f)) / (max($nilai_f) - min($nilai_f));
+                                    }
+
+                                    $norm_m = array();
+                                    foreach ($nilai_m as $n_m) {
+                                        $norm_m[] = ($n_m - min($nilai_m)) / (max($nilai_m) - min($nilai_m));
+                                    }
+
                                     $no = 1;
+                                    $nf = $nr = $nm = $nlr = 0;
                                     foreach ($rfm as $r) : ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= $r['customer_id'] == null ? "" : $r['name'] ?></td>
-                                            <td style="text-align:center">
-                                                <?= $r['total']; ?>
-                                            </td>
-                                            <td style="text-align:center">
-                                                <?php
-                                                $tglAwal = strtotime($r['trans_date']);
-                                                $tglAkhir = strtotime(date('Y-m-d'));
-                                                $jeda = abs($tglAkhir - $tglAwal);
-                                                $tes = $jeda / (60 * 60 * 24);
-                                                echo $tes;
+                                            <td style="text-align:center"><?= $r['customer_id'] == null ? "" : $r['customer_id'] ?></td>
 
+                                            <td style="text-align:center">
+                                                <?php echo $nilai_r[$nlr];
+                                                $nlr++;
                                                 ?>
                                             </td>
+
+                                            <td style="text-align:center">
+                                                <?php
+                                                $t = $r['total'];
+                                                echo $t;
+                                                ?>
+                                            </td>
+
                                             <td style="text-align:center">
                                                 <?= $r['total_price']; ?>
                                             </td>
+
+                                            <td style="text-align:center">
+                                                <?php echo round($norm_r[$nr], 4);
+                                                $nr++;
+                                                ?>
+                                            </td>
+
+                                            <td style="text-align:center">
+                                                <?php echo $norm_f[$nf];
+                                                $nf++;
+                                                ?>
+                                            </td>
+
+                                            <td style="text-align:center">
+                                                <?php echo round($norm_m[$nm], 4);
+                                                $nm++;
+                                                ?>
+                                            </td>
+
+                                        <?php endforeach; ?>
+
                                         </tr>
-                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -119,7 +170,7 @@
             </div>
 
 
-            <div class="row" id="cluster">
+            <!-- <div class="row" id="cluster">
                 <div class="col-lg-12">
                     <div class="box box-widget">
                         <div class="box-body table-responsive">
@@ -138,7 +189,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         <?php endif; ?>
     </div>
 </section>

@@ -4,7 +4,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-        <li class="active">User</li>
+        <li class="active">Users</li>
       </ol>
     </section>
     

@@ -1,11 +1,11 @@
 <section class="content-header">
-      <h1>SMS Campaign
-        <small>Pesan Kampanye</small>
+      <h1>SMS Marketing
+        <small>SMS Marketing</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
         <li>CRM</li>
-        <li class="active">Pesan Kampanye</li>
+        <li class="active">SMS Marketing</li>
       </ol>
 </section>
     
@@ -15,7 +15,7 @@
             <div class="box-header">
                 <h2 class="box-title"><b> Tambah Pesan</b></h2>
                 <div class="pull-right">
-                    <a href="<?=site_url('campaign')?>" class="btn btn-warning btn-flat">
+                    <a href="<?=site_url('sms_marketing')?>" class="btn btn-warning btn-flat">
                        <i class="fa fa-undo"></i> Kembali
                     </a>
                 </div>
@@ -23,7 +23,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
-                        <form action="<?=site_url('campaign/sendSMS')?>" method="post">
+                        <form action="<?=site_url('sms_marketing/sendSMS')?>" method="post">
                             <div class="form-group">
                                 <label>Isi Pesan *</label>
                                 <textarea name="message" value="" class="form-control"  required></textarea> 
@@ -35,6 +35,8 @@
                                     <option value="">- Pilih -</option>
                                     <option value="1">Cluster 1</option>
                                     <option value="2">Cluster 2</option>
+                                    <option value="2">Cluster 3</option>
+                                    <option value="2">Semua Cluster</option>
                                 </select> -->
                             </div>
                            

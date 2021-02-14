@@ -12,7 +12,7 @@
      
         <div class="box">
             <div class="box-header">
-                <h2 class="box-title"><b> <?=ucfirst($page)?> Pelanggan</b></h2>
+                <h2 class="box-title"><b> <?=ucfirst($show)?> Pelanggan</b></h2>
                 <div class="pull-right">
                     <a href="<?=site_url('customer')?>" class="btn btn-warning btn-flat">
                        <i class="fa fa-undo"></i> Kembali
