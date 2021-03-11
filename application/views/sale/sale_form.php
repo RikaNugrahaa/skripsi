@@ -94,16 +94,7 @@
                                 </div>
                             </td>
                             </tr>
-                            <!-- <tr>
-                            <td style="vertical-align:top">
-                                <label for="qty">Jumlah</label>
-                            </td>
-                            <td style="vertical-align:top">
-                                    <div class="form-group">
-                                        <input type="number" id="qty" value="1" class="form-control" readonly>
-                                    </div>
-                            </td>
-                            </tr> -->
+                           
                             <tr>
                                 <td></td>
                                 <td>

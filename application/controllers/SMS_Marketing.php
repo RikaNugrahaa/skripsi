@@ -8,7 +8,7 @@ class SMS_Marketing extends CI_Controller
 	{
 		parent::__construct();
 		check_not_login();
-		$this->load->model('SMS_Marketing_m');
+		$this->load->model(['SMS_Marketing_m', 'Clustering_m']);
 	}
 
 	public function index()
@@ -19,13 +19,18 @@ class SMS_Marketing extends CI_Controller
 
 	public function add()
 	{
-		$this->template->load('template', 'sms_marketing/sms_marketing_form');
+
+		$cluster_temp = $this->Clustering_m->get_cluster()->result();
+        $data = ['cluster_temp' => $cluster_temp];
+		$this->template->load('template', 'sms_marketing/sms_marketing_form', $data);
 	}
 
+	
 	public function sendSMS()
 	{	
 				
 		$post = $this->input->post(null, TRUE);
+		
 	
 		if (isset($_POST["add"])) {
 			$this->SMS_Marketing_m->add($post);

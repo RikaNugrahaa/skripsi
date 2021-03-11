@@ -156,7 +156,7 @@
                 <li <?= $this->uri->segment(1) == 'report' && $this->uri->segment(2) == 'stock' ? 'class="active"' : '' ?>>
                   <a href="<?= site_url('report/stock') ?>"><i class="fa fa-circle-o"></i> Stok Barang</a>
                 </li>
-                
+
               </ul>
             </li>
           <?php } ?>
@@ -189,7 +189,7 @@
   <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
   <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
-
+  
 
   <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
   <script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
