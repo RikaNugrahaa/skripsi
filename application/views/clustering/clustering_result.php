@@ -31,12 +31,14 @@ function jarakTerdekat($jarak_ke_centroid = array(), $centroid)
             $minimum = $value;
             $cluster = ($key + 1);
         }
-    }
 
+    }
+    
     return array(
         'cluster' => $cluster,
         'value' => $minimum,
     );
+    
 }
 
 function perbaruiCentroid($table_iterasi, $hasil_cluster)
@@ -131,6 +133,7 @@ $hasil_cluster = [];
 $iterasi = 0;
 while (true) {
     $table_iterasi = array();
+    
     //untuk setiap data ke i (x, y dan z)
     foreach ($data as $key => $value) {
         //untuk setiap table centroid pada iterasi ke i
@@ -148,6 +151,7 @@ while (true) {
     
     if (!$lanjutkan)
         break;
+        
     //loop sampai setiap nilai centroid sama dengan nilai centroid sebelumnya
 }
 ?>
@@ -287,6 +291,7 @@ while (true) {
 
                     <div class="form-group">
                         <p>
+                        <a href="<?=site_url('print_excel')?>"  class="btn btn-success" style="margin-bottom:10px" ><i class="fa fa-file-excel-o"></i> Export</a>
                             <a class="btn btn-info" data-toggle="collapse" style="margin-bottom:10px" href="#multiCollapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample">Inisialisasi</a>
                             <?php foreach ($hasil_iterasi as $key => $value) { ?>
                                 <a class="btn btn-primary" data-toggle="collapse" style="margin-bottom:10px" href="#multiCollapseExample<?php echo $key ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample<?php echo $key ?>">Iterasi ke-<?php echo ($key + 1); ?></a>

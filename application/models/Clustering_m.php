@@ -19,33 +19,28 @@ class Clustering_m extends CI_Model
     
     public function get_cluster($id=null)
     {
-        $this->db->select('cluster, customer.phone as customer_phone');
-        $this->db->from('cluster_temp');
-        $this->db->join('customer', 'cluster_temp.customer_id = customer.customer_id');
-        $this->db->group_by('cluster');
-        $this->db->order_by('cluster', 'asc');
-        if($id != null){
-            $this->db->where('sale_id', $id);
-        }
-        $query= $this->db->get();
+        $query= $this->db->query('SELECT customer.phone, cluster FROM cluster_temp INNER JOIN customer
+        ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp) GROUP BY cluster ORDER BY cluster ASC');
+        
+        
+        // $this->db->select('cluster, customer.phone as customer_phone');
+        // $this->db->from('cluster_temp');
+        // $this->db->join('customer', 'cluster_temp.customer_id = customer.customer_id');
+        // $this->db->group_by('cluster');
+        // $this->db->order_by('cluster', 'asc');
+        // if($id != null){
+        //     $this->db->where('cluster_id', $id);
+        // }
+        // $query= $this->db->get();
         return $query;  
    }
 
-   public function total_cluster()
+   public function print_excel()
     {
-        // $this->db->query('SELECT cluster, COUNT(*) as total FROM cluster_temp WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp) GROUP BY cluster DESC ');
+        $query= $this->db->query('SELECT customer.name, customer.phone, cluster FROM cluster_temp INNER JOIN customer
+        ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp GROUP BY customer.name) ORDER BY cluster ASC');
 		
-        
-        $this->db->select('cluster, count(*) as total');
-       
-        $this->db->where_in('iteration', 'select max(iteration)');
-        $this->db->group_by('cluster');
-       
-       
-        
-        return $this->db->from('cluster_temp')
-          ->get()
-          ->result();
+        return $query;
     }
 
 
