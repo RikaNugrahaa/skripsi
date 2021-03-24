@@ -1,5 +1,4 @@
 <?php
-
 $link  = mysqli_connect("127.0.0.1", "root", "user123", "pos");
 $query = $link->query("SELECT * FROM rfm_value");
 
@@ -13,6 +12,7 @@ while ($row = $query->fetch_assoc()) {
     $data[] = $row;
     $customer_id[] = $row['customer_id'];
 }
+//hitung Euclidean Distance Space
 //hitung Euclidean Distance Space
 function jarakEuclidean($data = array(), $centroid = array())
 {
@@ -31,17 +31,14 @@ function jarakTerdekat($jarak_ke_centroid = array(), $centroid)
             $minimum = $value;
             $cluster = ($key + 1);
         }
-
     }
-    
     return array(
         'cluster' => $cluster,
         'value' => $minimum,
     );
-    
 }
 
-function perbaruiCentroid($table_iterasi, $hasil_cluster)
+function perbaruiCentroid($table_iterasi, &$hasil_cluster)
 {
     $hasil_cluster = [];
     //looping untuk mengelompokan x dan y sesuai cluster
@@ -85,7 +82,16 @@ function flatten_array($arg)
     }, []) : [$arg];
 }
 
-
+function pointingHasilCluster($hasil_cluster)
+{
+    $result = [];
+    foreach ($hasil_cluster as $key => $value) {
+        for ($i = 0; $i < count($value[0]); $i++) {
+            $result[$key][] = [$hasil_cluster[$key][0][$i], $hasil_cluster[$key][1][$i], $hasil_cluster[$key][2][$i]];
+        }
+    }
+    return ksort($result);
+}
 
 //start program
 // get data dari database
@@ -102,17 +108,14 @@ while ($row = $query->fetch_assoc()) {
     $data[] = [$row['r_norm'], $row['f_norm'], $row['m_norm']];
 }
 
-
-
 //jumlah cluster
+$cluster = $_POST['jumlah_cluster'];
 $variable_x = 'R Norm';
 $variable_y = 'F Norm';
 $variable_z = 'M Norm';
 
-$cluster = $_POST['jumlah_cluster'];
 $rand = [];
 //centroid awal ambil random dari data
-
 for ($i = 0; $i < $cluster; $i++) {
     $temp = rand(0, (count($data) - 1));
     while (in_array([$rand], [$temp])) {
@@ -133,8 +136,7 @@ $hasil_cluster = [];
 $iterasi = 0;
 while (true) {
     $table_iterasi = array();
-    
-    //untuk setiap data ke i (x, y dan z)
+    //untuk setiap data ke i (x dan y)
     foreach ($data as $key => $value) {
         //untuk setiap table centroid pada iterasi ke i
         $table_iterasi[$key]['data'] = $value;
@@ -148,10 +150,10 @@ while (true) {
     array_push($hasil_iterasi, $table_iterasi);
     $centroid[++$iterasi] = perbaruiCentroid($table_iterasi, $hasil_cluster);
     $lanjutkan = centroidBerubah($centroid, $iterasi);
-    
+    $boolval = boolval($lanjutkan) ? 'ya' : 'tidak';
+    // echo 'proses iterasi ke-'.$iterasi.' : lanjutkan iterasi ? '.$boolval.'<br>';
     if (!$lanjutkan)
         break;
-        
     //loop sampai setiap nilai centroid sama dengan nilai centroid sebelumnya
 }
 ?>
@@ -291,7 +293,7 @@ while (true) {
 
                     <div class="form-group">
                         <p>
-                        <a href="<?=site_url('print_excel')?>"  class="btn btn-success" style="margin-bottom:10px" ><i class="fa fa-file-excel-o"></i> Export</a>
+                            <a href="<?= site_url('print_excel') ?>" class="btn btn-success" style="margin-bottom:10px"><i class="fa fa-file-excel-o"></i> Export</a>
                             <a class="btn btn-info" data-toggle="collapse" style="margin-bottom:10px" href="#multiCollapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample">Inisialisasi</a>
                             <?php foreach ($hasil_iterasi as $key => $value) { ?>
                                 <a class="btn btn-primary" data-toggle="collapse" style="margin-bottom:10px" href="#multiCollapseExample<?php echo $key ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample<?php echo $key ?>">Iterasi ke-<?php echo ($key + 1); ?></a>
@@ -310,7 +312,7 @@ while (true) {
                             <div class="col-lg-12">
                                 <div class="box box-widget">
                                     <div class="box-body table-responsive">
-                                        <table id="table1" class="table table-bordered table-striped">
+                                        <table id="" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th style="text-align:center">Centroid</th>
@@ -339,10 +341,7 @@ while (true) {
                         $this->db->query('truncate table cluster_temp');
 
 
-                        foreach ($hasil_iterasi as $key => $value) {
-
-                        ?>
-
+                        foreach ($hasil_iterasi as $key => $value) { ?>
                             <!-- <div class="col"> -->
                             <div class="collapse multi-collapse" id="multiCollapseExample<?php echo $key; ?>">
                                 <div class="box-header with-border">
@@ -372,10 +371,7 @@ while (true) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-
-                                                    $v = array();
-                                                    sort($v);
-                                                    foreach ($value as $key_data => $v) {
+                                                    foreach ($value as $key_data => $value_data) {
 
                                                     ?>
                                                         <tr>
@@ -384,27 +380,30 @@ while (true) {
                                                             <td style="text-align:center"><?php $cust = $customer_id[$key_data];
                                                                                             echo $cust;
                                                                                             ?></td>
-                                                            <td style="text-align:center"><?php echo $v['data'][0]; ?></td>
-                                                            <td style="text-align:center"><?php echo $v['data'][1]; ?></td>
-                                                            <td style="text-align:center"><?php echo $v['data'][2]; ?></td>
+                                                            <td style="text-align:center"><?php echo $value_data['data'][0]; ?></td>
+                                                            <td style="text-align:center"><?php echo $value_data['data'][1]; ?></td>
+                                                            <td style="text-align:center"><?php echo $value_data['data'][2]; ?></td>
                                                             <?php
-                                                            foreach ($v['jarak_ke_centroid'] as $key_jc => $value_jc) { ?>
+                                                            foreach ($value_data['jarak_ke_centroid'] as $key_jc => $value_jc) { ?>
                                                                 <td style="text-align:center"><?php echo round($value_jc, 4); ?></td>
                                                             <?php
                                                             }
                                                             ?>
-                                                            <td class="text-center"><?php echo round($v['jarak_terdekat']['value'], 4); ?></td>
+                                                            <td class="text-center"><?php echo round($value_data['jarak_terdekat']['value'], 4); ?></td>
 
-                                                            <td class="text-center"><?php $rc = $v['jarak_terdekat']['cluster'];
-                                                                                    ($rc);
+                                                            <td class="text-center"><?php $rc = $value_data['jarak_terdekat']['cluster'];
                                                                                     echo $rc;
                                                                                     ?></td>
 
                                                         </tr>
+
+
                                                         <?php
                                                         $this->db->query("insert into cluster_temp (customer_id,cluster, iteration) 
                                                         values('" . $cust . "','" . $rc . "', '" . $it . "')");
+
                                                         ?>
+
 
 
                                                     <?php } ?>

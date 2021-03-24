@@ -56,11 +56,7 @@ class Clustering extends CI_Controller
             $end_date = $this->input->post('end_date');
             $this->Clustering_m->set($start_date, $end_date);
             $data['rfm'] = $this->Clustering_m->set($start_date, $end_date);
-            // $data = array(
-            //     'cluster_id'=>$_POST['cluster_id'],
-            //     'customer_id'=>$_POST['customer_id'],
-            //     'cluster'=>$_POST['cluster']
-            // );
+            
 
 
             if (empty($data['rfm'])) {
@@ -82,7 +78,7 @@ class Clustering extends CI_Controller
 
         $spreadsheet->setActiveSheetIndex(0)
                     ->setCellValue('A1', 'No')
-                    ->setCellValue('B1', 'Nama')
+                    ->setCellValue('B1', 'Name')
                     ->setCellValue('C1', 'Phone')
                     ->setCellValue('D1', 'Cluster')
                    
@@ -98,7 +94,7 @@ class Clustering extends CI_Controller
                          ->setCellValue('B' . $kolom, $ct->name)
                          ->setCellValue('C' . $kolom, $ct->phone)
                          ->setCellValue('D' . $kolom, $ct->cluster);
-                         
+                                          
 
              $kolom++;
              $nomor++;

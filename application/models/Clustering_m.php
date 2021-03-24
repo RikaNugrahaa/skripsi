@@ -17,25 +17,35 @@ class Clustering_m extends CI_Model
 
 
     
-    public function get_cluster($id=null)
-    {
-        $query= $this->db->query('SELECT customer.phone, cluster FROM cluster_temp INNER JOIN customer
-        ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp) GROUP BY cluster ORDER BY cluster ASC');
-        
-        
-        // $this->db->select('cluster, customer.phone as customer_phone');
-        // $this->db->from('cluster_temp');
-        // $this->db->join('customer', 'cluster_temp.customer_id = customer.customer_id');
-        // $this->db->group_by('cluster');
-        // $this->db->order_by('cluster', 'asc');
-        // if($id != null){
-        //     $this->db->where('cluster_id', $id);
-        // }
-        // $query= $this->db->get();
-        return $query;  
-   }
+//     public function get_cluster()
+//     {
+//         $query= $this->db->query('SELECT cluster, phone FROM cluster_temp INNER JOIN customer
+//         ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp GROUP BY cluster) ORDER BY cluster ASC ');  
+      
+//       return $query;
+//    }
 
-   public function print_excel()
+public function getCluster()
+{
+    $this->db->select('*, GROUP_CONCAT(phone)as phones',false);
+    $this->db->from('cluster_result');
+    $this->db->group_by('cluster');
+    $this->db->order_by('cluster', 'asc');
+    $query=$this->db->get();
+    return $query;
+    
+}
+
+// public function getRecords($cluster)
+// {
+//     $this->db->select('*');
+//     $this->db->from('cluster_result');
+//     $this->db->where(['cluster' =>$cluster]);
+//     $query=$this->db->get();
+//     return $query->result();
+// }
+
+    public function print_excel()
     {
         $query= $this->db->query('SELECT customer.name, customer.phone, cluster FROM cluster_temp INNER JOIN customer
         ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp GROUP BY customer.name) ORDER BY cluster ASC');
