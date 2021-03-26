@@ -12,7 +12,7 @@
         <?php $this->view('messages') ?>  
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><b>Data Suppliers</b></h3>
+                <h3 class="box-title"><b>Data Supplier</b></h3>
                 <div class="pull-right">
                 <?php if($this->fungsi->user_login()->level == 1) { ?>
                     <a href="<?=site_url('supplier/add')?>" class="btn btn-primary btn-flat">

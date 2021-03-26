@@ -122,4 +122,18 @@ class Sale_m extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+
+    public function get_last_detail()
+    {
+               
+        $this->db->select('sale_detail.*, product.product_code as product_code, sale_transaction.invoice as invoice,total');
+        $this->db->from('sale_detail');
+        $this->db->join('product', 'sale_detail.product_id = product.product_id');
+        $this->db->join('sale_transaction', 'sale_detail.sale_id = sale_transaction.sale_id');
+        
+        $this->db->order_by('detail_id', 'DESC');
+        $this->db->limit(10);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

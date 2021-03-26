@@ -115,6 +115,7 @@ $variable_y = 'F Norm';
 $variable_z = 'M Norm';
 
 $rand = [];
+
 //centroid awal ambil random dari data
 for ($i = 0; $i < $cluster; $i++) {
     $temp = rand(0, (count($data) - 1));
@@ -170,259 +171,149 @@ while (true) {
 </section>
 
 
-<?php if (!empty($rfm)) : ?>
-    <section class="content">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title"><b>Data RFM Pelanggan</b></h3>
-                <div class="pull-right">
-                    <a href="<?= site_url('clustering') ?>" class="btn btn-warning btn-flat">
-                        <i class="fa fa-undo"></i> Kembali
+
+<section class="content">
+    <!-- SELECT2 EXAMPLE -->
+    <div class="box box-default">
+        <div id="cluster_result">
+            <div class="form-group">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><b>Hasil Clustering Menggunakan K-Means</b></h3>
+                </div>
+            </div>
+            <div class="box-body">
+            <div class="pull-right">
+                    <a href="<?=site_url('clustering')?>" class="btn btn-warning btn-flat">
+                       <i class="fa fa-undo"></i> Kembali
                     </a>
                 </div>
-            </div>
-            <div class="row" id="rfm">
-                <div class="col-lg-12">
-                    <div class="box box-widget">
-                        <div class="box-body table-responsive">
-                            <table id="table1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th style="text-align:center">Id Pelanggan</th>
-                                        <th style="text-align:center">Recency Score</th>
-                                        <th style="text-align:center">Frequency Score</th>
-                                        <th style="text-align:center">Monetary Score</th>
-                                        <th style="text-align:center">Recency Normalization</th>
-                                        <th style="text-align:center">Frequency Normalization</th>
-                                        <th style="text-align:center">Monetary Normalization</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-
-                                    $nilai_r = array();
-                                    $nilai_f = array();
-                                    $nilai_m = array();
-                                    foreach ($rfm as $r) {
-                                        $tglAwal = strtotime($r['trans_date']);
-                                        $tglAkhir = strtotime(date('Y-m-d'));
-                                        $jeda = abs($tglAkhir - $tglAwal);
-                                        $nilai_r[] = $jeda / (60 * 60 * 24);
-                                        $nilai_f[] = $r['total'];
-                                        $nilai_m[] = $r['total_price'];
-                                    }
-                                    $norm_r = array();
-                                    foreach ($nilai_r as $n_r) {
-                                        $norm_r[] =  @!is_nan(($n_r - min($nilai_r)) / (max($nilai_r) - min($nilai_r))) ? (($n_r - min($nilai_r)) / (max($nilai_r) - min($nilai_r))) : 0;
-                                    }
-
-                                    $norm_f = array();
-                                    foreach ($nilai_f as $n_f) {
-                                        $norm_f[] = @!is_nan(($n_f - min($nilai_f)) / (max($nilai_f) - min($nilai_f))) ? (($n_f - min($nilai_f)) / (max($nilai_f) - min($nilai_f))) : 0;
-                                    }
-
-                                    $norm_m = array();
-                                    foreach ($nilai_m as $n_m) {
-                                        $norm_m[] = @!is_nan(($n_m - min($nilai_m)) / (max($nilai_m) - min($nilai_m)))  ? (($n_m - min($nilai_m)) / (max($nilai_m) - min($nilai_m))) : 0;
-                                    }
-
-                                    $no = 1;
-                                    $nf = $nr = $nm = $nlr = 0;
-                                    $this->db->query('truncate table rfm_value');
-                                    foreach ($rfm as $r) : ?>
-                                        <?php
-                                        $this->db->query("insert into rfm_value (customer_id,r_norm,f_norm,m_norm) 
-                                            values('" . $r['customer_id'] . "','" . $norm_r[$nr] . "','" . $norm_f[$nf] . "','" . $norm_m[$nm] . "')");
-                                        ?>
-                                        <tr>
-                                            <td><?= $no++; ?></td>
-                                            <td style="text-align:center"><?= $r['customer_id'] == null ? "" : $r['customer_id'] ?></td>
-
-                                            <td style="text-align:center">
-                                                <?php echo $nilai_r[$nlr];
-                                                $nlr++;
-                                                ?>
-                                            </td>
-
-                                            <td style="text-align:center">
-                                                <?php
-                                                $t = $r['total'];
-                                                echo $t;
-                                                ?>
-                                            </td>
-
-                                            <td style="text-align:center">
-                                                <?= $r['total_price']; ?>
-                                            </td>
-
-                                            <td style="text-align:center">
-                                                <?php echo (round($norm_r[$nr], 4));
-                                                $nr++;
-                                                ?>
-                                            </td>
-
-                                            <td style="text-align:center">
-                                                <?php echo round($norm_f[$nf], 4);
-                                                ($nf++);
-                                                ?>
-                                            </td>
-
-                                            <td style="text-align:center">
-                                                <?php echo round($norm_m[$nm], 4);
-                                                $nm++;
-                                                ?>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="cluster_result">
                 <div class="form-group">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"><b>Hasil Clustering Menggunakan K-Means</b></h3>
-                    </div>
+                    <p>
+                        <a href="<?= site_url('print_excel') ?>" class="btn btn-success" style="margin-bottom:10px"><i class="fa fa-download"></i> Export to Excel</a>
+
+                        <?php foreach ($hasil_iterasi as $key => $value) { ?>
+                            <a class="btn btn-primary" data-toggle="collapse" style="margin-bottom:10px" href="#multiCollapseExample<?php echo $key ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample<?php echo $key ?>">Iterasi ke-<?php echo ($key + 1); ?></a>
+                        <?php }  ?>
+                    </p>
                 </div>
-                <div class="box-body">
-
-                    <div class="form-group">
-                        <p>
-                            <a href="<?= site_url('print_excel') ?>" class="btn btn-success" style="margin-bottom:10px"><i class="fa fa-file-excel-o"></i> Export</a>
-                            <a class="btn btn-info" data-toggle="collapse" style="margin-bottom:10px" href="#multiCollapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample">Inisialisasi</a>
-                            <?php foreach ($hasil_iterasi as $key => $value) { ?>
-                                <a class="btn btn-primary" data-toggle="collapse" style="margin-bottom:10px" href="#multiCollapseExample<?php echo $key ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample<?php echo $key ?>">Iterasi ke-<?php echo ($key + 1); ?></a>
-                            <?php }  ?>
-                        </p>
-                    </div>
 
 
-                    <div class="collapse multi-collapse" id="multiCollapseExample">
 
-                        <div class="box-header with-border">
-                            <h3 class="box-title"><b>Inisialisasi Centroid Awal</b></h3>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="box box-widget">
-                                    <div class="box-body table-responsive">
-                                        <table id="" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align:center">Centroid</th>
-                                                    <th style="text-align:center"><?php echo $variable_x; ?></th>
-                                                    <th style="text-align:center"><?php echo $variable_y; ?></th>
-                                                    <th style="text-align:center"><?php echo $variable_z; ?></th>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($centroid[0] as $key_c => $value_c) { ?>
-                                                    <tr>
-                                                        <td style="text-align:center"><?php echo ($key_c + 1); ?></td>
-                                                        <td style="text-align:center"><?php echo $value_c[0]; ?></td>
-                                                        <td style="text-align:center"><?php echo $value_c[1]; ?></td>
-                                                        <td style="text-align:center"><?php echo $value_c[2]; ?></td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title"><b>Inisialisasi Centroid Awal</b></h3>
+                   
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box box-widget">
+                            <div class="box-body table-responsive">
+                                <table id="" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align:center">Centroid</th>
+                                            <th style="text-align:center"><?php echo $variable_x; ?></th>
+                                            <th style="text-align:center"><?php echo $variable_y; ?></th>
+                                            <th style="text-align:center"><?php echo $variable_z; ?></th>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($centroid[0] as $key_c => $value_c) { ?>
+                                            <tr>
+                                                <td style="text-align:center"><?php echo ($key_c + 1); ?></td>
+                                                <td style="text-align:center"><?php echo $value_c[0]; ?></td>
+                                                <td style="text-align:center"><?php echo $value_c[1]; ?></td>
+                                                <td style="text-align:center"><?php echo $value_c[2]; ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <?php
+                <?php
 
-                        $this->db->query('truncate table cluster_temp');
+                $this->db->query('truncate table cluster_temp');
 
 
-                        foreach ($hasil_iterasi as $key => $value) { ?>
-                            <!-- <div class="col"> -->
-                            <div class="collapse multi-collapse" id="multiCollapseExample<?php echo $key; ?>">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title"><b>Iterasi ke-<?php $it = ($key + 1);
-                                                                        echo $it; ?></b></h3>
-                                </div>
-                                <div class=" col-lg-12">
-                                    <div class="box box-widget">
-                                        <div class="box-body table-responsive">
-                                            <table id="table1" class="table table-bordered table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th rowspan="2">No</th>
-                                                        <th rowspan="2" style="text-align:center">Id Pelanggan</th>
-                                                        <th rowspan="2" style="text-align:center"><?php echo $variable_x; ?></th>
-                                                        <th rowspan="2" style="text-align:center"><?php echo $variable_y; ?></th>
-                                                        <th rowspan="2" style="text-align:center"><?php echo $variable_z; ?></th>
-                                                        <th rowspan="1" style="text-align:center" colspan="<?php echo $cluster; ?>">Centroid</th>
-                                                        <th rowspan="2" style="text-align:center">Jarak terdekat</th>
-                                                        <th rowspan="2" style="text-align:center">Cluster</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <?php for ($i = 1; $i <= $cluster; $i++) { ?>
-                                                            <th style="text-center"><?php echo $i; ?></th>
-                                                        <?php } ?>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    foreach ($value as $key_data => $value_data) {
+                foreach ($hasil_iterasi as $key => $value) { ?>
+                    <!-- <div class="col"> -->
+                    <div class="collapse multi-collapse" id="multiCollapseExample<?php echo $key; ?>">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><b>Iterasi ke-<?php $it = ($key + 1);
+                                                                echo $it; ?></b></h3>
+                        </div>
+                        <div class=" col-lg-12">
+                            <div class="box box-widget">
+                                <div class="box-body table-responsive">
+                                    <table id="" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2">No</th>
+                                                <th rowspan="2" style="text-align:center">Id Pelanggan</th>
+                                                <th rowspan="2" style="text-align:center"><?php echo $variable_x; ?></th>
+                                                <th rowspan="2" style="text-align:center"><?php echo $variable_y; ?></th>
+                                                <th rowspan="2" style="text-align:center"><?php echo $variable_z; ?></th>
+                                                <th rowspan="1" style="text-align:center" colspan="<?php echo $cluster; ?>">Centroid</th>
+                                                <th rowspan="2" style="text-align:center">Jarak terdekat</th>
+                                                <th rowspan="2" style="text-align:center">Cluster</th>
+                                            </tr>
+                                            <tr>
+                                                <?php for ($i = 1; $i <= $cluster; $i++) { ?>
+                                                    <th style="text-center"><?php echo $i; ?></th>
+                                                <?php } ?>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach ($value as $key_data => $value_data) {
 
-                                                    ?>
-                                                        <tr>
+                                            ?>
+                                                <tr>
 
-                                                            <td style="text-align:center"><?php echo $key_data + 1; ?></td>
-                                                            <td style="text-align:center"><?php $cust = $customer_id[$key_data];
-                                                                                            echo $cust;
-                                                                                            ?></td>
-                                                            <td style="text-align:center"><?php echo $value_data['data'][0]; ?></td>
-                                                            <td style="text-align:center"><?php echo $value_data['data'][1]; ?></td>
-                                                            <td style="text-align:center"><?php echo $value_data['data'][2]; ?></td>
-                                                            <?php
-                                                            foreach ($value_data['jarak_ke_centroid'] as $key_jc => $value_jc) { ?>
-                                                                <td style="text-align:center"><?php echo round($value_jc, 4); ?></td>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <td class="text-center"><?php echo round($value_data['jarak_terdekat']['value'], 4); ?></td>
-
-                                                            <td class="text-center"><?php $rc = $value_data['jarak_terdekat']['cluster'];
-                                                                                    echo $rc;
+                                                    <td style="text-align:center"><?php echo $key_data + 1; ?></td>
+                                                    <td style="text-align:center"><?php $cust = $customer_id[$key_data];
+                                                                                    echo $cust;
                                                                                     ?></td>
+                                                    <td style="text-align:center"><?php echo $value_data['data'][0]; ?></td>
+                                                    <td style="text-align:center"><?php echo $value_data['data'][1]; ?></td>
+                                                    <td style="text-align:center"><?php echo $value_data['data'][2]; ?></td>
+                                                    <?php
+                                                    foreach ($value_data['jarak_ke_centroid'] as $key_jc => $value_jc) { ?>
+                                                        <td style="text-align:center"><?php echo round($value_jc, 4); ?></td>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <td class="text-center"><?php echo round($value_data['jarak_terdekat']['value'], 4); ?></td>
 
-                                                        </tr>
+                                                    <td class="text-center"><?php $rc = $value_data['jarak_terdekat']['cluster'];
+                                                                            echo $rc;
+                                                                            ?></td>
+
+                                                </tr>
 
 
-                                                        <?php
-                                                        $this->db->query("insert into cluster_temp (customer_id,cluster, iteration) 
+                                                <?php
+                                                $this->db->query("insert into cluster_temp (customer_id,cluster, iteration) 
                                                         values('" . $cust . "','" . $rc . "', '" . $it . "')");
 
-                                                        ?>
+                                                ?>
 
 
 
-                                                    <?php } ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        <?php
-                        }
-                        ?>
+                        </div>
                     </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
-            <!-- <div class="box-body">
-                <div id="bar-chart" style="height: 300px;"></div>
-
-            </div> -->
         </div>
-    </section>
-<?php endif; ?>
+    </div>
+</section>

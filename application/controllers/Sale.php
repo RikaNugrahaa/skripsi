@@ -115,4 +115,5 @@ class Sale extends CI_Controller {
         $this->load->view('sale/receipt_print', $data);
 
     }
+    
 }

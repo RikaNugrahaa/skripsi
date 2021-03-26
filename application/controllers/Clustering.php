@@ -16,8 +16,7 @@ class Clustering extends CI_Controller
         $this->load->model(['Clustering_m', 'Sale_m']);
        
     }
-
-   
+  
     public function index()
     {
 
@@ -40,34 +39,35 @@ class Clustering extends CI_Controller
                 'required' => 'Tentukan tanggal terlebih dahulu.'
             ]
         );
-        $this->form_validation->set_rules(
-            'jumlah_cluster',
-            'Jumlah Cluster',
-            'trim|required',
-            [
-                'required' => 'Tentukan jumlah cluster terlebih dahulu.'
-            ]
-        );
+       
         if ($this->form_validation->run() == FALSE) {
-            $this->template->load('template', 'clustering/clustering_data');
+            $this->template->load('template', 'clustering/rfm_data');
         } else {
 
             $start_date = $this->input->post('start_date');
             $end_date = $this->input->post('end_date');
             $this->Clustering_m->set($start_date, $end_date);
             $data['rfm'] = $this->Clustering_m->set($start_date, $end_date);
-            
-
 
             if (empty($data['rfm'])) {
                 $this->session->set_flashdata('pesan', 'data tidak ditemukan.');
-                $this->template->load('template', 'clustering/clustering_data');
-            } else {
+                $this->template->load('template', 'clustering/rfm_data');
+
                 
-                $this->template->load('template', 'clustering/clustering_result',$data);
+            } else {
+               
+                $this->template->load('template', 'clustering/rfm_data',$data);
             }
-              
-            
+        }
+                      
+        
+    }
+
+    public function clustering_process()
+    {
+       if (isset($_POST['proses'])) {
+            $this->template->load('template', 'clustering/clustering_result');
+           
         }
     }
     public function print_excel()
@@ -82,8 +82,7 @@ class Clustering extends CI_Controller
                     ->setCellValue('C1', 'Phone')
                     ->setCellValue('D1', 'Cluster')
                    
-                    ;
-                   
+                    ;                  
 
         $kolom = 2;
         $nomor = 1;
@@ -93,8 +92,7 @@ class Clustering extends CI_Controller
                          ->setCellValue('A' . $kolom, $nomor)
                          ->setCellValue('B' . $kolom, $ct->name)
                          ->setCellValue('C' . $kolom, $ct->phone)
-                         ->setCellValue('D' . $kolom, $ct->cluster);
-                                          
+                         ->setCellValue('D' . $kolom, $ct->cluster);                                         
 
              $kolom++;
              $nomor++;

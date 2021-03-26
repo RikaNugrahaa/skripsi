@@ -26,13 +26,7 @@ class Report extends CI_Controller {
 		
 	}
 	
-	public function stock_data()
-	{
-        $data['row'] = $this->Report_m->getAll_stock()->result();
 
-        $this->template->load('template', 'report/stock/stock_report', $data);
-		
-    }
 
     public function sale_filter(){
 		$tanggalawal = $this->input->post('tanggalawal');
@@ -76,14 +70,6 @@ class Report extends CI_Controller {
 		}
 
 	}
-
-	public function stock_print()
-    {
-		$data['row'] = $this->Report_m->getAll_stock()->result();
-
-        $this->load->view('report/stock/stock_report_print', $data);
-
-    }
 
 	public function sale_detail_filter(){
 		$tanggalawal = $this->input->post('tanggalawal');

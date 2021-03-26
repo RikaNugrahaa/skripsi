@@ -23,6 +23,7 @@ class Category extends CI_Controller {
 		$category->name = null;
 		$data = array(
 			'page' => 'add', 
+			'show' => 'tambah', 
 			'row'=> $category
 		);
 		$this->template->load('template', 'service/category/category_form', $data);
@@ -35,6 +36,7 @@ class Category extends CI_Controller {
 			$category = $query->row();
 			$data = array(
 				'page' => 'edit', 
+				'show' => 'edit', 
 				'row'=> $category
 			);
 			$this->template->load('template', 'service/category/category_form', $data);

@@ -93,15 +93,6 @@ class Report_m extends CI_Model {
         return $query->result();
 
     }
-
-    public function getAll_stock(){
-        
-        $this->db->select('item_stock.*');
-        
-        $this->db->from('item_stock');
-        $query = $this->db->get();
-        return $query;
-    } 
   
     public function detail_filter_by_date($tanggalawal, $tanggalakhir){
         

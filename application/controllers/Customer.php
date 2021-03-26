@@ -62,7 +62,7 @@ class Customer extends CI_Controller {
 
 	public function edit($id)
 	{
-		check_admin();
+		
 		$query = $this->customer_m->get($id);
 		if($query->num_rows() > 0) {
 			$customer = $query->row();
@@ -95,7 +95,7 @@ class Customer extends CI_Controller {
 
 	public function del($id)
 	{
-		check_admin();
+		
 		$this->customer_m->del($id);
 		if($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Data berhasil dihapus');

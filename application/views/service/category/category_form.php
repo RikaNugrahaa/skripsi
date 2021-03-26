@@ -13,7 +13,7 @@
     <?php $this->view('messages') ?>
         <div class="box">
             <div class="box-header">
-                <h2 class="box-title"><b> <?=ucfirst($page)?> Category</b></h2>
+                <h2 class="box-title"><b> <?=ucfirst($show)?> Category</b></h2>
                 <div class="pull-right">
                     <a href="<?=site_url('category')?>" class="btn btn-warning btn-flat">
                        <i class="fa fa-undo"></i> Kembali

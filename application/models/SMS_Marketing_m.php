@@ -15,32 +15,6 @@ class SMS_Marketing_m extends CI_Model
         return $query;
     }
 
-    public function getRecord()
-    {
-        $query = $this->db->get('messages');
-        if($query->num_rows() >0){
-            return $query->result();
-        }
-    }
-   
-    public function select(){
-
-        $this->db->order_by('result_id', 'ASC');
-
-        $query = $this->db->get('cluster_result');
-
-        return $query;
-
-}
-
-    public function insert($data){
-
-        $this->db->query('truncate table cluster_result');
-        $this->db->insert_batch('cluster_result', $data);
-        
-
-}
-
     public function add($post)
     {
         
@@ -54,9 +28,9 @@ class SMS_Marketing_m extends CI_Model
 
     }
 
-    public function del($id)
-    {
-        $this->db->where('message_id', $id);
-        $this->db->delete('messages');
-    }
+    // public function del($id)
+    // {
+    //     $this->db->where('message_id', $id);
+    //     $this->db->delete('messages');
+    // }
 }

@@ -1,11 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-// require('./application/third_party/phpoffice/vendor/autoload.php');
-
-
-// use PhpOffice\PhpSpreadsheet\Spreadsheet;
-// use PhpOffice\PhpSpreadsheet\Reader\Csv;
-// use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class SMS_Marketing extends CI_Controller
 {
@@ -15,20 +9,15 @@ class SMS_Marketing extends CI_Controller
 		parent::__construct();
 		check_not_login();
 		$this->load->model(['SMS_Marketing_m', 'Clustering_m']);
-		$this->load->library('excel');
 	}
 
 	public function index()
 	{
-        $this->template->load('template', 'sms_marketing/sms_marketing_form');
-	}
-
-	public function form_broadcast()
-	{
-		$cluster_temp = $this->Clustering_m->getCluster()->result();
+        $cluster_temp = $this->Clustering_m->getCluster()->result();
         $data = ['cluster_temp' => $cluster_temp];
 		$this->template->load('template', 'sms_marketing/send_broadcast_form',$data);
 	}
+
 
 	public function sendSMS()
 	{
@@ -73,96 +62,96 @@ class SMS_Marketing extends CI_Controller
 		redirect('sms_marketing');
 	}
 
-	public function fetch()
-	{
+	// public function fetch()
+	// {
 
-		$data = $this->SMS_Marketing_m->select();
+	// 	$data = $this->SMS_Marketing_m->select();
 
-		$output = '
+	// 	$output = '
 	
 		
-		<table class="tabel table-bordered table striped" >
+	// 	<table class="tabel table-bordered table striped" >
          
 			
-		<tr>
-		<th>No</th>
-		<th>Nama Pelanggan</th>
-		<th style="text-align:center">Phone</th>
-        <th style="text-align:center">Kelompok Cluster</th>	
-		 </tr>
+	// 	<tr>
+	// 	<th>No</th>
+	// 	<th>Nama Pelanggan</th>
+	// 	<th style="text-align:center">Phone</th>
+    //     <th style="text-align:center">Kelompok Cluster</th>	
+	// 	 </tr>
 	
-		';
-		$no = 1;
-		foreach ($data->result() as $row) {
+	// 	';
+	// 	$no = 1;
+	// 	foreach ($data->result() as $row) {
 
-			$output .= '
+	// 		$output .= '
 			
 	
-		  <tr>
-		  <td>' . $no++.'</td>
+	// 	  <tr>
+	// 	  <td>' . $no++.'</td>
 	
-		  <td>' . $row->name . '</td>
+	// 	  <td>' . $row->name . '</td>
 	
-		  <td style="text-align:center">' . $row->phone . '</td>
+	// 	  <td style="text-align:center">' . $row->phone . '</td>
 
-		  <td style="text-align:center">' . $row->cluster . '</td>
+	// 	  <td style="text-align:center">' . $row->cluster . '</td>
 	
-		  </tr>
+	// 	  </tr>
 	
-		  ';
-		}
+	// 	  ';
+	// 	}
 
-		$output .= '</table>';
+	// 	$output .= '</table>';
 
-		echo $output;
-	}
+	// 	echo $output;
+	// }
 
 
 
-	public function import()
-	{
+	// public function import()
+	// {
 
-		if (isset($_FILES["file"]["name"])) {
+	// 	if (isset($_FILES["file"]["name"])) {
 
-			$path = $_FILES["file"]["tmp_name"];
+	// 		$path = $_FILES["file"]["tmp_name"];
 
-			$object = PHPExcel_IOFactory::load($path);
+	// 		$object = PHPExcel_IOFactory::load($path);
 
-			foreach ($object->getWorksheetIterator() as $worksheet) {
-				// $this->db->query('truncate table cluster_result');
+	// 		foreach ($object->getWorksheetIterator() as $worksheet) {
+	// 			// $this->db->query('truncate table cluster_result');
 
-				$highestRow = $worksheet->getHighestRow();
+	// 			$highestRow = $worksheet->getHighestRow();
 
-				$highestColumn = $worksheet->getHighestColumn();
+	// 			$highestColumn = $worksheet->getHighestColumn();
 
-				for ($row = 2; $row <= $highestRow; $row++) {
+	// 			for ($row = 2; $row <= $highestRow; $row++) {
 					
 					
 					
-					$name = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+	// 				$name = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
 
-					$phone = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+	// 				$phone = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
 
-					$cluster = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+	// 				$cluster = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
 
-					$data[] = array(
+	// 				$data[] = array(
 
-						'name'  => $name,
+	// 					'name'  => $name,
 
-						'phone'   => $phone,
+	// 					'phone'   => $phone,
 
-						'cluster' => $cluster
+	// 					'cluster' => $cluster
 
-					);
-				}
-			}
+	// 				);
+	// 			}
+	// 		}
 
-			$this->SMS_Marketing_m->insert($data);
+	// 		$this->SMS_Marketing_m->insert($data);
 			
 
-			echo 'Data Imported successfully';
-		}
-	}
+	// 		echo 'Data Imported successfully';
+	// 	}
+	// }
 
 
 	

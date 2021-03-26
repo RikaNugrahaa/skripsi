@@ -12,11 +12,14 @@
 
 <!-- Main Content -->
 <section class="content">
+
   <div class="row">
-    <div class="alert alert-success disable alert-dismissible">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <h4>Selamat Datang :)</h4>
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+      You are successfully logged in!!
     </div>
+
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-aqua"><i class="fa fa-archive"></i></span>
@@ -82,6 +85,43 @@
     </div>
     <!-- /.col -->
 
+    <div class="col-lg-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title"><b>Data Transaksi</b></h3>
+
+        </div>
+        <div class="box-body table-responsive">
+          <table class="tabel table-bordered table striped" id="">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>invoice</th>
+                <th>Kode Produk</th>
+                <th>Total</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($chart as $key => $row) { ?>
+                <tr>
+                  <td><?php echo $key + 1; ?></td>
+                  <td><?php echo $row['invoice']; ?></td>
+                  <td><?php echo $row['product_code']; ?></td>
+                  <td><?php echo indo_currency($row['total']); ?></td>
+                  <td><?php echo indo_date($row['created'])?> </td>
+                  
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
   </div>
   <!-- /.row -->
+
 </section>

@@ -36,8 +36,8 @@
                             <label>Jenis Kelamin *</label>
                             <select name="gender" class="form-control" required>
                                 <option value="">- Pilih -</option>
-                                <option value="L" <?= $row->gender == 'L' ? 'selected' : '' ?>>Laki-laki</option>
-                                <option value="P" <?= $row->gender == 'P' ? 'selected' : '' ?>>Perempuan</option>
+                                <option value="Laki-laki" <?= $row->gender == 'Laki-laki' ? 'selected' : '' ?>>Laki-laki</option>
+                                <option value="Perempuan" <?= $row->gender == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
                             </select>
                         </div>
                         <div class="form-group">

@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Kategori Layanan *</label>
-                                <select name="category" class="form-control" >
+                                <select name="category" class="form-control" required>
                                     <option value="">- Pilih -</option>
                                     <?php foreach($category->result() as $key => $data) { ?>
                                         <option value="<?=$data->category_id?>" <?=$data->category_id == $row->category_id ? "selected" : null?>><?=$data->name?></option>

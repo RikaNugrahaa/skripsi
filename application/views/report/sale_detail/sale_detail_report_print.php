@@ -57,7 +57,7 @@
                             </tr>
                         <?php endforeach ?>
                         <tr>
-                            <td style="text-align:center" colspan="6"><strong>TOTAL</strong></td>
+                            <td style="text-align:center" colspan="6"><strong>TOTAL PENDAPATAN</strong></td>
 
                             <td style="text-align:center"><strong><?php echo indo_currency($sum); ?></strong></td>
                         </tr>

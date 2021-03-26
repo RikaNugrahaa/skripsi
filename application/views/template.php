@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/Ionicons/css/ionicons.min.css">
+
+  <!-- Morris charts -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/morris.js/morris.css">
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -153,9 +157,7 @@
                 <li <?= $this->uri->segment(1) == 'report' && $this->uri->segment(2) == 'sale_detail' ? 'class="active"' : '' ?>>
                   <a href="<?= site_url('report/sale_detail') ?>"><i class="fa fa-circle-o"></i> Detail Penjualan</a>
                 </li>
-                <li <?= $this->uri->segment(1) == 'report' && $this->uri->segment(2) == 'stock' ? 'class="active"' : '' ?>>
-                  <a href="<?= site_url('report/stock') ?>"><i class="fa fa-circle-o"></i> Stok Barang</a>
-                </li>
+
 
               </ul>
             </li>
@@ -189,11 +191,14 @@
   <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
   <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
-  
+
 
   <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
   <script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-
+  <script src="<?= base_url() ?>assets/bower_components/raphael/raphael.min.js"></script>
+  <script src="<?= base_url() ?>assets/bower_components/morris.js/morris.min.js"></script>
+  <!-- FastClick -->
+  <script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 
   <script>
     $(document).ready(function() {
