@@ -28,9 +28,4 @@ class SMS_Marketing_m extends CI_Model
 
     }
 
-    // public function del($id)
-    // {
-    //     $this->db->where('message_id', $id);
-    //     $this->db->delete('messages');
-    // }
 }

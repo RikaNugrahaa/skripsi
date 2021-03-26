@@ -15,16 +15,6 @@ class Clustering_m extends CI_Model
         return $query->result_array();
     }
 
-// public function getCluster()
-// {
-//     $this->db->select('*, GROUP_CONCAT(phone)as phones',false);
-//     $this->db->from('cluster_result');
-//     $this->db->group_by('cluster');
-//     $this->db->order_by('cluster', 'asc');
-//     $query=$this->db->get();
-//     return $query;
-    
-// }
 public function getCluster()
 {
     $query= $this->db->query('SELECT customer.name, customer.phone, cluster,  GROUP_CONCAT(customer.phone) as phones FROM cluster_temp INNER JOIN customer
