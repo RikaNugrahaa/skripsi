@@ -26,7 +26,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Aksi</th>
+                            <th style="text-align: center;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

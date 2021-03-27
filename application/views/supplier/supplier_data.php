@@ -27,10 +27,10 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>No Hp</th>
-                            <th>Alamat</th>
-                            <th>Deskripsi</th>
-                            <?php if($this->fungsi->user_login()->level == 1) { ?> <th>Aksi</th><?php } ?>
+                            <th style="text-align: center;">No Hp</th>
+                            <th style="text-align: center;">Alamat</th>
+                            <th style="text-align: center;">Deskripsi</th>
+                            <?php if($this->fungsi->user_login()->level == 1) { ?> <th style="text-align: center;">Aksi</th><?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,9 +39,9 @@
                         <tr>
                             <td style="width:5%";><?=$no++?>.</td>
                             <td><?=$data->name?></td>
-                            <td><?=$data->phone?></td>
-                            <td><?=$data->address?></td>
-                            <td><?=$data->description?></td>
+                            <td style="text-align: center;"><?=$data->phone?></td>
+                            <td style="text-align: center;"><?=$data->address?></td>
+                            <td style="text-align: center;"><?=$data->description?></td>
                             <?php if($this->fungsi->user_login()->level == 1) { ?>  
                                 <td class="text-center" width="160px">
                                 <a href="<?=site_url('supplier/edit/'.$data->supplier_id)?>" class="btn btn-primary btn-xs">

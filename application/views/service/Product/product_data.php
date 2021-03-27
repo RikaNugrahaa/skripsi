@@ -48,6 +48,12 @@
                     "url": "<?=site_url('product/get_product')?>",
                     "type": "POST"
                 },
+                "columnDefs": [
+                    {
+                        "targets": [1, 2, 3, 4, 5],
+                        "className": 'text-center'
+                    },
+                ]
                 
             })
         })

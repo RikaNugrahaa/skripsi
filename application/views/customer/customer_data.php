@@ -49,6 +49,12 @@
                     "url": "<?=site_url('customer/get_customer')?>",
                     "type": "POST"
                 },
+                "columnDefs": [
+                    {
+                        "targets": [2, 3, 4],
+                        "className": 'text-center'
+                    },
+                ]
                 
             })
         })

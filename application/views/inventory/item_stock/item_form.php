@@ -13,7 +13,7 @@
     <?php $this->view('messages') ?>
         <div class="box">
             <div class="box-header">
-                <h2 class="box-title"><b> <?=ucfirst($show)?> Barang</b></h2>
+                <h2 class="box-title"><b> <?=ucfirst($show)?> Data Barang</b></h2>
                 <div class="pull-right">
                     <a href="<?=site_url('item')?>" class="btn btn-warning btn-flat">
                        <i class="fa fa-undo"></i> Kembali

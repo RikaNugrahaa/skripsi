@@ -25,9 +25,9 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>No Hp</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Aksi</th>
+                            <th style="text-align: center;">No Hp</th>
+                            <th style="text-align: center;">Jenis Kelamin</th>
+                            <th style="text-align: center;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,8 +36,8 @@
                         <tr>
                             <td style="width:5%;"><?=$no++?>.</td>
                             <td><?=$data->name?></td>
-                            <td><?=$data->phone?></td>
-                            <td><?=$data->gender?></td>
+                            <td style="text-align: center;"><?=$data->phone?></td>
+                            <td style="text-align: center;"><?=$data->gender?></td>
                             <td class="text-center" width="160px">
                                 <a href="<?=site_url('therapist/edit/'.$data->therapist_id)?>" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i> Edit
