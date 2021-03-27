@@ -88,28 +88,28 @@
     <div class="col-lg-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title"><b>Data Transaksi</b></h3>
+          <h3 class="box-title"><b>Data Transaksi Terbaru</b></h3>
 
         </div>
         <div class="box-body table-responsive">
           <table class="tabel table-bordered table striped" id="">
             <thead>
               <tr>
-                <th>No</th>
-                <th>invoice</th>
-                <th>Kode Produk</th>
-                <th>Total</th>
-                <th>Tanggal</th>
+                <th style="text-align:center">No</th>
+                <th style="text-align:center">invoice</th>
+                <th style="text-align:center">Kode Produk</th>
+                <th style="text-align:center">Total</th>
+                <th style="text-align:center">Tanggal</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($chart as $key => $row) { ?>
+              <?php foreach ($sale_detail as $key => $row) { ?>
                 <tr>
-                  <td><?php echo $key + 1; ?></td>
-                  <td><?php echo $row['invoice']; ?></td>
-                  <td><?php echo $row['product_code']; ?></td>
-                  <td><?php echo indo_currency($row['total']); ?></td>
-                  <td><?php echo indo_date($row['created'])?> </td>
+                  <td style="text-align:center"><?php echo $key + 1; ?></td>
+                  <td style="text-align:center"><?php echo $row['invoice']; ?></td>
+                  <td style="text-align:center"><?php echo $row['product_code']; ?></td>
+                  <td style="text-align:center"><?php echo indo_currency($row['total']); ?></td>
+                  <td style="text-align:center"><?php echo indo_date($row['created'])?> </td>
                   
                 </tr>
               <?php } ?>

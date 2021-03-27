@@ -80,7 +80,10 @@ class Clustering extends CI_Controller
                     ->setCellValue('A1', 'No')
                     ->setCellValue('B1', 'Name')
                     ->setCellValue('C1', 'Phone')
-                    ->setCellValue('D1', 'Cluster')
+                    ->setCellValue('D1', 'R Norm')
+                    ->setCellValue('E1', 'F Norm')
+                    ->setCellValue('F1', 'M Norm')
+                    ->setCellValue('G1', 'Cluster')
                    
                     ;                  
 
@@ -92,7 +95,10 @@ class Clustering extends CI_Controller
                          ->setCellValue('A' . $kolom, $nomor)
                          ->setCellValue('B' . $kolom, $ct->name)
                          ->setCellValue('C' . $kolom, $ct->phone)
-                         ->setCellValue('D' . $kolom, $ct->cluster);                                         
+                         ->setCellValue('D' . $kolom, $ct->r_norm)
+                         ->setCellValue('E' . $kolom, $ct->f_norm)
+                         ->setCellValue('F' . $kolom, $ct->m_norm)
+                         ->setCellValue('G' . $kolom, $ct->cluster);                                         
 
              $kolom++;
              $nomor++;

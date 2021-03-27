@@ -26,7 +26,7 @@ public function getCluster()
 
     public function print_excel()
     {
-        $query= $this->db->query('SELECT customer.name, customer.phone, cluster FROM cluster_temp INNER JOIN customer
+        $query= $this->db->query('SELECT customer.name, customer.phone, r_norm, f_norm, m_norm, cluster FROM cluster_temp INNER JOIN customer
         ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp GROUP BY customer.name) ORDER BY cluster ASC');
 		
         return $query;

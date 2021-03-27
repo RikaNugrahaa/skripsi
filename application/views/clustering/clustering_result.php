@@ -41,7 +41,7 @@ function jarakTerdekat($jarak_ke_centroid = array(), $centroid)
 function perbaruiCentroid($table_iterasi, &$hasil_cluster)
 {
     $hasil_cluster = [];
-    //looping untuk mengelompokan x dan y sesuai cluster
+    //looping untuk mengelompokan x, y dan z sesuai cluster
     foreach ($table_iterasi as $key => $value) {
         $hasil_cluster[($value['jarak_terdekat']['cluster'] - 1)][0][] = $value['data'][0]; //data x
         $hasil_cluster[($value['jarak_terdekat']['cluster'] - 1)][1][] = $value['data'][1]; //data y
@@ -82,16 +82,16 @@ function flatten_array($arg)
     }, []) : [$arg];
 }
 
-function pointingHasilCluster($hasil_cluster)
-{
-    $result = [];
-    foreach ($hasil_cluster as $key => $value) {
-        for ($i = 0; $i < count($value[0]); $i++) {
-            $result[$key][] = [$hasil_cluster[$key][0][$i], $hasil_cluster[$key][1][$i], $hasil_cluster[$key][2][$i]];
-        }
-    }
-    return ksort($result);
-}
+// function pointingHasilCluster($hasil_cluster)
+// {
+//     $result = [];
+//     foreach ($hasil_cluster as $key => $value) {
+//         for ($i = 0; $i < count($value[0]); $i++) {
+//             $result[$key][] = [$hasil_cluster[$key][0][$i], $hasil_cluster[$key][1][$i], $hasil_cluster[$key][2][$i]];
+//         }
+//     }
+//     return ksort($result);
+// }
 
 //start program
 // get data dari database
@@ -137,7 +137,7 @@ $hasil_cluster = [];
 $iterasi = 0;
 while (true) {
     $table_iterasi = array();
-    //untuk setiap data ke i (x dan y)
+    //untuk setiap data ke i (x,y dan z)
     foreach ($data as $key => $value) {
         //untuk setiap table centroid pada iterasi ke i
         $table_iterasi[$key]['data'] = $value;
@@ -151,7 +151,7 @@ while (true) {
     array_push($hasil_iterasi, $table_iterasi);
     $centroid[++$iterasi] = perbaruiCentroid($table_iterasi, $hasil_cluster);
     $lanjutkan = centroidBerubah($centroid, $iterasi);
-    $boolval = boolval($lanjutkan) ? 'ya' : 'tidak';
+    // $boolval = boolval($lanjutkan) ? 'ya' : 'tidak';
     // echo 'proses iterasi ke-'.$iterasi.' : lanjutkan iterasi ? '.$boolval.'<br>';
     if (!$lanjutkan)
         break;
@@ -182,9 +182,9 @@ while (true) {
                 </div>
             </div>
             <div class="box-body">
-            <div class="pull-right">
-                    <a href="<?=site_url('clustering')?>" class="btn btn-warning btn-flat">
-                       <i class="fa fa-undo"></i> Kembali
+                <div class="pull-right">
+                    <a href="<?= site_url('clustering') ?>" class="btn btn-warning btn-flat">
+                        <i class="fa fa-undo"></i> Kembali
                     </a>
                 </div>
                 <div class="form-group">
@@ -202,7 +202,7 @@ while (true) {
 
                 <div class="box-header with-border">
                     <h3 class="box-title"><b>Inisialisasi Centroid Awal</b></h3>
-                   
+
                 </div>
 
                 <div class="row">
@@ -277,9 +277,12 @@ while (true) {
                                                     <td style="text-align:center"><?php $cust = $customer_id[$key_data];
                                                                                     echo $cust;
                                                                                     ?></td>
-                                                    <td style="text-align:center"><?php echo $value_data['data'][0]; ?></td>
-                                                    <td style="text-align:center"><?php echo $value_data['data'][1]; ?></td>
-                                                    <td style="text-align:center"><?php echo $value_data['data'][2]; ?></td>
+                                                    <td style="text-align:center"><?php $rnorm = $value_data['data'][0];
+                                                                                    echo $rnorm ?></td>
+                                                    <td style="text-align:center"><?php $fnorm = $value_data['data'][1];
+                                                                                    echo $fnorm ?></td>
+                                                    <td style="text-align:center"><?php $mnorm = $value_data['data'][2];
+                                                                                    echo $mnorm ?></td>
                                                     <?php
                                                     foreach ($value_data['jarak_ke_centroid'] as $key_jc => $value_jc) { ?>
                                                         <td style="text-align:center"><?php echo round($value_jc, 4); ?></td>
@@ -296,8 +299,8 @@ while (true) {
 
 
                                                 <?php
-                                                $this->db->query("insert into cluster_temp (customer_id,cluster, iteration) 
-                                                        values('" . $cust . "','" . $rc . "', '" . $it . "')");
+                                                $this->db->query("insert into cluster_temp (customer_id, r_norm, f_norm, m_norm, cluster, iteration) 
+                                                        values('" . $cust . "','" . $rnorm . "', '" . $fnorm . "', '" . $mnorm . "','" . $rc . "', '" . $it . "')");
 
                                                 ?>
 

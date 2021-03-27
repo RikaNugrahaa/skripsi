@@ -23,8 +23,8 @@ class SMS_Marketing extends CI_Controller
 	{
 		$post = $this->input->post(null, TRUE);
 		if (isset($_POST['add'])) {
-			$email_api = urlencode("rikanugraha88@gmail.com");
-			$passkey_api = urlencode("Hm123123");
+			$email_api = urlencode("rika.sisfountan@gmail.com");
+			$passkey_api = urlencode("rk123123");
 			$no_hp_tujuan = urlencode($_POST["recipient"]);
 
 			$isi_pesan = urlencode($_POST["message"]);

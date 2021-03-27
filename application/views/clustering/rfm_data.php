@@ -14,7 +14,7 @@
     <div class="box box-default">
 
         <div class="box-header with-border">
-            <h3 class="box-title"><b>Analisa RFM Berdasarkan Periode </b></h3>
+            <h3 class="box-title"><b>Analisa RFM Pelanggan Berdasarkan Periode </b></h3>
         </div>
         <!-- /.box-header -->
 
@@ -60,7 +60,7 @@
                 <!-- <section class="content"> -->
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title"><b>Data RFM Pelanggan</b></h3>
+                        <h3 class="box-title"><b>Hasil Analisa RFM Pelanggan</b></h3>
                         <div class="pull-right">
                             <!-- <a href="<?= site_url('clustering') ?>" class="btn btn-warning btn-flat">
                             <i class="fa fa-undo"></i> Kembali

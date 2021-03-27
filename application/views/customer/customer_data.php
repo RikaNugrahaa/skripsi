@@ -28,8 +28,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Phone</th>
-                            <th>Jenis Kelamin</th>
-                           
+                            <th>Jenis Kelamin</th>                          
                             <th>Aksi</th>
                         
                         </tr>

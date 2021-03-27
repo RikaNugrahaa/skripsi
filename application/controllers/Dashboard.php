@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$data['chart']= $this->sale_m->get_last_detail();
+		$data['sale_detail']= $this->sale_m->get_last_detail();
 		
 		$this->template->load('template', 'dashboard',$data);
 	}
