@@ -170,8 +170,6 @@ while (true) {
     </ol>
 </section>
 
-
-
 <section class="content">
     <!-- SELECT2 EXAMPLE -->
     <div class="box box-default">

@@ -28,12 +28,11 @@ class SMS_Marketing extends CI_Controller
 			$no_hp_tujuan = urlencode($_POST["recipient"]);
 
 			$isi_pesan = urlencode($_POST["message"]);
-			$process=explode(",",$no_hp_tujuan);
-			reset($process);
+			// $process=explode(",",$no_hp_tujuan);
+			// reset($process);
 			$url = "https://reguler.medansms.co.id/sms_api.php?action=kirim_sms&email=" . $email_api . "&passkey=" . $passkey_api . "&no_tujuan=" . $no_hp_tujuan . "&pesan=" . $isi_pesan ;
 			$result = file_get_contents($url);
 			$data = explode("~~~", $result);
-
 
 			$this->SMS_Marketing_m->add($post);
 			if ($data[0] == 1) {

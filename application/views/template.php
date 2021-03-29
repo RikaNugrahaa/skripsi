@@ -53,9 +53,9 @@
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <div class="pull-left">
+                  <!-- <div class="pull-left">
                     <a href="#" class="btn btn-default bg-blue">Profile</a>
-                  </div>
+                  </div> -->
                   <div class="pull-right">
                     <a href="<?= site_url('auth/logout') ?>" class="btn btn-default bg-red">Sign out</a>
                   </div>

@@ -28,7 +28,7 @@
                         <th>Nama</th>
                         <th>Alamat</th>
                         <th>Level</th>
-                        <th>Aksi</th>
+                        <th style="text-align: center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
