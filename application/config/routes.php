@@ -70,3 +70,5 @@ $route['report/stock'] = 'report/stock_data';
 $route['report/sale_detail'] = 'report/sale_detail_data';
 $route['report/sale_detail/filter'] = 'report/sale_detail_filter';
 $route['print_excel'] = 'clustering/print_excel';
+
+

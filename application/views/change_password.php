@@ -8,8 +8,6 @@
   </ol>
 </section>
 
-
-
 <section class="content">
 <?php $this->view('messages') ?>
     <div class="box">

@@ -8,17 +8,19 @@ class User extends CI_Controller
     {
         parent::__construct();
         check_not_login();
-        check_admin();
+        
         $this->load->model('user_m');
         $this->load->library('form_validation');
     }
     public function index()
     {
+        check_admin();
         $data['row'] = $this->user_m->get();
         $this->template->load('template', 'user/user_data', $data);
     }
     public function add()
     {
+        check_admin();
         $this->form_validation->set_rules('name', 'Nama', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
@@ -51,6 +53,7 @@ class User extends CI_Controller
 
     public function edit($id)
     {
+        check_admin();
         $this->form_validation->set_rules('name', 'Nama', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|callback_username_check');
         if ($this->input->post('password')) {
@@ -111,9 +114,6 @@ class User extends CI_Controller
 
     public function changePassword()
     {
-
-
-
         $this->form_validation->set_rules(
             'passwordlama',
             'Password Lama',
@@ -133,7 +133,7 @@ class User extends CI_Controller
         );
         $this->form_validation->set_rules(
             'passconf',
-            'Konfirmasi Password',
+            'Konfirmasi Password Baru',
             'required|matches[passwordbaru]',
             array('matches' => '%s tidak sesuai dengan password baru')
         );
@@ -167,6 +167,7 @@ class User extends CI_Controller
 
     public function del()
     {
+        check_admin();
         $id = $this->input->post('user_id');
         $this->user_m->del($id);
 

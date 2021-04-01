@@ -7,6 +7,7 @@ class Therapist extends CI_Controller {
     {
         parent::__construct();
         check_not_login();
+		check_admin();
         $this->load->model('therapist_m');
     }
 
