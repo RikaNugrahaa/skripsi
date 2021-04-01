@@ -15,7 +15,7 @@
             <div class="box-header">
                 <h3 class="box-title"><b>Data Produk</b></h3>
                 <div class="pull-right">
-                    <a href="<?=site_url('product/add')?>" class="btn btn-primary btn-flat">
+                    <a href="<?=site_url('Product/add')?>" class="btn btn-primary btn-flat">
                        <i class="fa fa-plus"> Tambah </i>
                     </a>
                 </div>
@@ -45,7 +45,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "<?=site_url('product/get_product')?>",
+                    "url": "<?=site_url('Product/get_product')?>",
                     "type": "POST"
                 },
                 "columnDefs": [

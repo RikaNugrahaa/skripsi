@@ -15,23 +15,19 @@ class Clustering_m extends CI_Model
         return $query->result_array();
     }
 
-public function getCluster()
-{
-    $query= $this->db->query('SELECT customer.name, customer.phone, cluster,  GROUP_CONCAT(customer.phone) as phones FROM cluster_temp INNER JOIN customer
-    ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp) GROUP BY cluster ORDER BY cluster ASC');
-    
-    return $query;
-    
-}
-
-    public function print_excel()
+    public function getCluster()
     {
-        $query= $this->db->query('SELECT customer.name, customer.phone, r_norm, f_norm, m_norm, cluster FROM cluster_temp INNER JOIN customer
-        ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp GROUP BY customer.name) ORDER BY cluster ASC');
-		
+        $query = $this->db->query('SELECT customer.name, customer.phone, cluster,  GROUP_CONCAT(customer.phone) as phones FROM cluster_temp INNER JOIN customer
+        ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp) GROUP BY cluster ORDER BY cluster ASC');
+
         return $query;
     }
 
+    public function print_excel()
+    {
+        $query = $this->db->query('SELECT customer.name, customer.phone, r_norm, f_norm, m_norm, cluster FROM cluster_temp INNER JOIN customer
+        ON customer.customer_id=cluster_temp.customer_id WHERE iteration IN (SELECT MAX(iteration) FROM cluster_temp GROUP BY customer.name) ORDER BY cluster ASC');
 
-   
+        return $query;
+    }
 }

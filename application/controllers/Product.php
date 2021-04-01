@@ -7,11 +7,11 @@ class Product extends CI_Controller {
     {
         parent::__construct();
 		check_not_login();
-        $this->load->model(['product_m', 'category_m']);
+        $this->load->model(['Product_m', 'Category_m']);
 	}
 	
 	function get_product() {
-        $list = $this->product_m->get_datatables();
+        $list = $this->Product_m->get_datatables();
         $data = array();
         $no = @$_POST['start'];
         foreach ($list as $product) {
@@ -23,14 +23,14 @@ class Product extends CI_Controller {
             $row[] = $product->category_name;
             $row[] = indo_currency($product->price);
             // add html for action
-            $row[] = '<a href="'.site_url('product/edit/'.$product->product_id).'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-                   <a href="'.site_url('product/del/'.$product->product_id).'" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>';
+            $row[] = '<a href="'.site_url('Product/edit/'.$product->product_id).'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                   <a href="'.site_url('Product/del/'.$product->product_id).'" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>';
             $data[] = $row;
         }
         $output = array(
                     "draw" => @$_POST['draw'],
-                    "recordsTotal" => $this->product_m->count_all(),
-                    "recordsFiltered" => $this->product_m->count_filtered(),
+                    "recordsTotal" => $this->Product_m->count_all(),
+                    "recordsFiltered" => $this->Product_m->count_filtered(),
                     "data" => $data,
                 );
         // output to json format
@@ -39,7 +39,7 @@ class Product extends CI_Controller {
 
 	public function index()
 	{
-		$data['row'] = $this->product_m->get();
+		$data['row'] = $this->Product_m->get();
 		$this->template->load('template', 'service/product/product_data', $data);
 	}
 
@@ -52,7 +52,7 @@ class Product extends CI_Controller {
 		$product->price = null;
 		$product->category_id = null;
 
-		$query_category = $this->category_m->get();
+		$query_category = $this->Category_m->get();
 
 		$data = array(
 			'page' => 'add', 
@@ -65,10 +65,10 @@ class Product extends CI_Controller {
 
 	public function edit($id)
 	{
-		$query = $this->product_m->get($id);
+		$query = $this->Product_m->get($id);
 		if($query->num_rows() > 0) {
 			$product = $query->row();
-			$query_category = $this->category_m->get();
+			$query_category = $this->Category_m->get();
 
 			$data = array(
 				'page' => 'edit', 
@@ -79,7 +79,7 @@ class Product extends CI_Controller {
 			$this->template->load('template', 'service/product/product_form', $data);
 		} else {
 			echo "<script>alert('data tidak ditemukan');";
-			echo "window.location='".site_url('product')."';</script>";
+			echo "window.location='".site_url('Product')."';</script>";
 		}
 	}
 	 
@@ -87,33 +87,33 @@ class Product extends CI_Controller {
 	{
 		$post = $this->input->post(null, TRUE);
 		if(isset($_POST['add'])) {
-			if($this->product_m->check_no_product($post['product_code'])->num_rows() > 0) {
+			if($this->Product_m->check_no_product($post['product_code'])->num_rows() > 0) {
 				$this->session->set_flashdata('error', "Kode produk $post[product_code] sudah dipakai produk layanan lain");
-				redirect('product/add');
+				redirect('Product/add');
 			} else {
-				$this->product_m->add($post);
+				$this->Product_m->add($post);
 			}
 		} else if(isset($_POST['edit'])) {
-			if($this->product_m->check_no_product($post['product_code'], $post['id'])->num_rows() > 0) {
+			if($this->Product_m->check_no_product($post['product_code'], $post['id'])->num_rows() > 0) {
 				$this->session->set_flashdata('error', "Kode produk $post[product_code] sudah dipakai produk layanan lain");
-				redirect('product/edit/' .$post['id']);
+				redirect('Product/edit/' .$post['id']);
 			} else {
-				$this->product_m->edit($post);
+				$this->Product_m->edit($post);
 			}
 		}
 
 		if($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('success', 'Data berhasil disimpan');
         }
-		redirect('product');   
+		redirect('Product');   
 	}
 
 	public function del($id)
 	{
-		$this->product_m->del($id);
+		$this->Product_m->del($id);
 		if($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Data berhasil dihapus');
         }
-        redirect('product');  
+        redirect('Product');  
 	}
 }

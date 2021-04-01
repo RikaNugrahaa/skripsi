@@ -15,7 +15,7 @@
             <div class="box-header">
                 <h2 class="box-title"><b> <?=ucfirst($show)?> Data Produk</b></h2>
                 <div class="pull-right">
-                    <a href="<?=site_url('product')?>" class="btn btn-warning btn-flat">
+                    <a href="<?=site_url('Product')?>" class="btn btn-warning btn-flat">
                        <i class="fa fa-undo"></i> Kembali
                     </a>
                 </div>
@@ -23,7 +23,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
-                        <form action="<?=site_url('product/process')?>" method="post">
+                        <form action="<?=site_url('Product/process')?>" method="post">
                             <div class="form-group">
                                 <label>Kode Produk</label>
                                 <input type="hidden" name="id" value="<?=$row->product_id?>">

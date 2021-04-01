@@ -53,11 +53,11 @@
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <!-- <div class="pull-left">
-                    <a href="#" class="btn btn-default bg-blue">Profile</a>
-                  </div> -->
+                  <div class="pull-left">
+                    <a href="<?= site_url('User/changePassword')?>" class="btn btn-default bg-blue">Ubah Password</a>
+                  </div>
                   <div class="pull-right">
-                    <a href="<?= site_url('auth/logout') ?>" class="btn btn-default bg-red">Sign out</a>
+                    <a href="<?= site_url('Auth/logout') ?>" class="btn btn-default bg-red">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -121,26 +121,26 @@
             </ul>
           </li>
           <?php if ($this->fungsi->user_login()->level == 1) { ?>
-            <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'product' ? 'active' : '' ?>">
+            <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'Product' ? 'active' : '' ?>">
               <a href="#">
                 <i class="fa fa-archive"></i><span> Paket Layanan</span>
                 <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
               </a>
               <ul class="treeview-menu">
                 <li <?= $this->uri->segment(1) == 'category' ? 'class="active"' : '' ?>><a href="<?= site_url('category') ?>"><i class="fa fa-circle-o"></i>Kategori Layanan</a></li>
-                <li <?= $this->uri->segment(1) == 'product' ? 'class="active"' : '' ?>><a href="<?= site_url('product') ?>"><i class="fa fa-circle-o"></i>Produk Layanan</a></li>
+                <li <?= $this->uri->segment(1) == 'Product' ? 'class="active"' : '' ?>><a href="<?= site_url('Product') ?>"><i class="fa fa-circle-o"></i>Produk Layanan</a></li>
               </ul>
             </li>
           <?php } ?>
           <?php if ($this->fungsi->user_login()->level == 1) { ?>
-            <li class="treeview <?= $this->uri->segment(1) == 'clustering' || $this->uri->segment(1) == 'sms_marketing' ? 'active' : '' ?>">
+            <li class="treeview <?= $this->uri->segment(1) == 'clustering' || $this->uri->segment(1) == 'SMS_Marketing' ? 'active' : '' ?>">
               <a href="#">
                 <i class="fa fa-list-alt"></i><span> CRM</span>
                 <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
               </a>
               <ul class="treeview-menu">
                 <li <?= $this->uri->segment(1) == 'clustering' ? 'class="active"' : '' ?>><a href="<?= site_url('clustering') ?>"><i class="fa fa-circle-o"></i> Segmentasi Pelanggan </a></li>
-                <li <?= $this->uri->segment(1) == 'sms_marketing' ? 'class="active"' : '' ?>><a href="<?= site_url('sms_marketing') ?>"><i class="fa fa-circle-o"></i> SMS Marketing </a></li>
+                <li <?= $this->uri->segment(1) == 'SMS_Marketing' ? 'class="active"' : '' ?>><a href="<?= site_url('SMS_Marketing') ?>"><i class="fa fa-circle-o"></i> SMS Marketing </a></li>
               </ul>
             </li>
           <?php } ?>

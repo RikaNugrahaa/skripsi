@@ -34,6 +34,8 @@ class Auth extends CI_Controller
 			}
 		}
 	}
+	
+
 	public function logout()
 	{
 		$params = array('userid', 'level');
