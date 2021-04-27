@@ -13,6 +13,7 @@ class Clustering extends CI_Controller
     {
         parent::__construct();
         check_not_login();
+        check_admin();
         $this->load->model(['Clustering_m', 'Sale_m']);
        
     }
@@ -58,9 +59,7 @@ class Clustering extends CI_Controller
                
                 $this->template->load('template', 'clustering/rfm_data',$data);
             }
-        }
-                      
-        
+        }                             
     }
 
     public function clustering_process()

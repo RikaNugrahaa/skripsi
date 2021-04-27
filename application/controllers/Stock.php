@@ -12,18 +12,21 @@ class Stock extends CI_Controller
 
     public function stock_in_data()
     {
+        check_admin();
         $data['row'] = $this->stock_m->get_stock_in()->result();
         $this->template->load('template', 'inventory/stock_in/stock_in_data', $data);
     }
 
     public function stock_out_data()
     {
+        check_kasir();
         $data['row'] = $this->stock_m->get_stock_out()->result();
         $this->template->load('template', 'inventory/stock_out/stock_out_data', $data);
     }
 
     public function stock_in_add()
     {
+        check_admin();
         $item_stock = $this->item_m->get()->result();
         $supplier = $this->supplier_m->get()->result();
         $data = ['item_stock' => $item_stock, 'supplier' => $supplier];
@@ -33,6 +36,7 @@ class Stock extends CI_Controller
 
     public function stock_out_add()
     {
+        check_kasir();
         $item_stock = $this->item_m->get()->result();
         $data = ['item_stock' => $item_stock];
 
@@ -45,7 +49,7 @@ class Stock extends CI_Controller
             $this->stock_m->stock_in_add($post);
             $this->item_m->stock_in_update($post);
             if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('success', 'Data barang masuk berhasil disimpan');
+                $this->session->set_flashdata('success', 'Data berhasil disimpan');
             }
             redirect('stock/in');
         }
@@ -54,7 +58,7 @@ class Stock extends CI_Controller
             $this->stock_m->stock_out_add($post);
             $this->item_m->stock_out_update($post);
             if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('success', 'Data barang keluar berhasil disimpan');
+                $this->session->set_flashdata('success', 'Data berhasil disimpan');
             }
             redirect('stock/out');
         }
@@ -62,6 +66,7 @@ class Stock extends CI_Controller
 
     public function stock_in_del()
     {
+        check_admin();
         $stock_id = $this->uri->segment(4);
         $item_id = $this->uri->segment(5);
         $qty = $this->stock_m->get($stock_id)->row()->qty;
@@ -76,6 +81,7 @@ class Stock extends CI_Controller
 
     public function stock_out_del()
     {
+        check_kasir();
         $stock_id = $this->uri->segment(4);
         $item_id = $this->uri->segment(5);
         $qty = $this->stock_m->get($stock_id)->row()->qty;

@@ -29,7 +29,7 @@
                                 <input type="text" name="supplier_name" value="<?=$row->name?>" class=" form-control" required> 
                             </div>
                             <div class="form-group">
-                                <label>No Hp *</label>
+                                <label>Phone *</label>
                                 <input type="number" name="phone" value="<?=$row->phone?>" class=" form-control" required> 
                             </div>
                             <div class="form-group">

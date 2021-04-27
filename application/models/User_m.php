@@ -78,11 +78,11 @@ class User_m extends CI_Model {
     //     $this->db->update('user');
     // }
 
-    public function update_user($id, $userdata)
-    {
-        $this->db->where('user_id', $id);
-        $this->db->update('user', $userdata);
-    }
+    // public function update_user($id, $userdata)
+    // {
+    //     $this->db->where('user_id', $id);
+    //     $this->db->update('user', $userdata);
+    // }
 
     public function del($id)
 	{

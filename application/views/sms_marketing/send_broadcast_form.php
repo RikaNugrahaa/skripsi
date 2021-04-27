@@ -27,7 +27,7 @@
                     <!-- <div class="collapse multi-collapse" id="multiCollapseExample2"> -->
 
 
-                    <form action="<?= site_url('sms_marketing/sendSMS') ?>" method="post">
+                    <form action="<?= site_url('SMS_Marketing/sendSMS') ?>" method="post">
                         <div class="form-group">
                             <label style="margin-left:10px">Isi Pesan *</label>
                             <textarea name="message" value="" style="height: 100px; margin-left:10px" class="form-control" required></textarea>
@@ -74,15 +74,6 @@
                             <button type="reset" class="btn btn-secondary btn-danger"><i class="fa fa-ban"></i> Reset</button>
                         </div>
                     </form>
-
-
-
-
-
-
-                    <!-- </div>
-                    </div> -->
-
                 </div>
             </div>
         </div>

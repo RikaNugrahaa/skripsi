@@ -45,7 +45,7 @@
                             <?= form_error('passconf') ?>
                         </div>
                         <div class="form-group">
-                            <label>Alamat </label>
+                            <label>Alamat *</label>
                             <textarea name="address" class="form-control"><?= $this->input->post('address') ?? $row->address ?></textarea>
                             <?= form_error('address') ?>
                         </div>

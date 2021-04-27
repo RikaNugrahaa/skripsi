@@ -25,12 +25,12 @@
                     <div class="col-md-4 col-md-offset-4">
                         <form action="<?=site_url('Product/process')?>" method="post">
                             <div class="form-group">
-                                <label>Kode Produk</label>
+                                <label>Kode Produk *</label>
                                 <input type="hidden" name="id" value="<?=$row->product_id?>">
                                 <input type="text" name="product_code" value="<?=$row->product_code?>" class=" form-control" required> 
                             </div>
                             <div class="form-group">
-                                <label>Nama Layanan </label>
+                                <label>Nama Produk Layanan * </label>
                                 <input type="hidden" name="id" value="<?=$row->product_id?>">
                                 <input type="text" name="product_name" value="<?=$row->name?>" class=" form-control" required> 
                             </div>
@@ -44,7 +44,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Harga </label>
+                                <label>Harga *</label>
                                 <input type="number" name="product_price" value="<?=$row->price?>" class=" form-control" required> 
                             </div>
                             <div class="form-group">

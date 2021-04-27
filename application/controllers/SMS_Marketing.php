@@ -8,6 +8,7 @@ class SMS_Marketing extends CI_Controller
 	{
 		parent::__construct();
 		check_not_login();
+		check_admin();
 		$this->load->model(['SMS_Marketing_m', 'Clustering_m']);
 	}
 
@@ -40,7 +41,7 @@ class SMS_Marketing extends CI_Controller
 				echo "<script>
 			alert('pesan berhasil terkirim');
 			";
-				echo "window.location='" . site_url('sms_marketing') .
+				echo "window.location='" . site_url('SMS_Marketing') .
 					"';
 				</script>";
 			} else {

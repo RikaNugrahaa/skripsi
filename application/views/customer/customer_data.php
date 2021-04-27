@@ -27,7 +27,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Phone</th>
+                            <th>No Hp</th>
                             <th>Jenis Kelamin</th>                          
                             <th>Aksi</th>
                         

@@ -27,7 +27,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th style="text-align: center;">No Hp</th>
+                            <th style="text-align: center;">Phone</th>
                             <th style="text-align: center;">Alamat</th>
                             <th style="text-align: center;">Deskripsi</th>
                             <?php if($this->fungsi->user_login()->level == 1) { ?> <th style="text-align: center;">Aksi</th><?php } ?>

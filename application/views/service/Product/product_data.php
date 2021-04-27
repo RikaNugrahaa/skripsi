@@ -16,7 +16,7 @@
                 <h3 class="box-title"><b>Data Produk</b></h3>
                 <div class="pull-right">
                     <a href="<?=site_url('Product/add')?>" class="btn btn-primary btn-flat">
-                       <i class="fa fa-plus"> Tambah </i>
+                       <i class="fa fa-plus"></i> Tambah 
                     </a>
                 </div>
             </div>

@@ -7,6 +7,7 @@ class Item extends CI_Controller {
     {
         parent::__construct();
 		check_not_login();
+		check_admin();
         $this->load->model(['item_m']);
 	}
 	
@@ -83,7 +84,7 @@ class Item extends CI_Controller {
 			$this->item_m->edit($post);
 		}
             if($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('success', 'Data Stock-In berhasil disimpan');
+                $this->session->set_flashdata('success', 'Data berhasil disimpan');
             }
             redirect('item'); 
         }

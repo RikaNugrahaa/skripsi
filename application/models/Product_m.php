@@ -5,7 +5,7 @@ class Product_m extends CI_Model {
      // start datatables
      var $column_order = array(null, 'product_code', 'product.name', 'category_name', 'price'); //set column field database for datatable orderable
      var $column_search = array('product_code', 'product.name', 'price'); //set column field database for datatable searchable
-     var $order = array('product_id' => 'asc'); // default order
+     var $order = array('product_code' => 'asc'); // default order
   
      private function _get_datatables_query() {
          $this->db->select('product.*, category.name as category_name');
